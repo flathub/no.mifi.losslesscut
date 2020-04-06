@@ -1,6 +1,14 @@
 app-id: no.mifi.losslesscut
 runtime: org.freedesktop.Platform
 runtime-version: '19.08'
+add-extensions:
+  org.freedesktop.Platform.ffmpeg-full:
+    directory: lib/ffmpeg
+    add-ld-path: "."
+    version: "19.08"
+    autodownload: True
+    autodelete: False
+
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.node10
@@ -43,6 +51,7 @@ modules:
       env:
         NPM_CONFIG_LOGLEVEL: info
         npm_config_nodedir: /usr/lib/sdk/node10
+        FFMPEG_BIN: /app/lib/ffmpeg/bin
 
         # Tell caches where we pre-downloaded things.
         npm_config_cache: /run/build/losless-cut/flatpak-node/npm-cache/
@@ -117,7 +126,7 @@ modules:
       - type: script
         dest-filename: run.sh
         commands:
-          - /app/lossless-cut/lossless-cut --no-sandbox
+          - env FFMPEG_BIN=/app/lib/ffmpeg/bin/   /app/lossless-cut/lossless-cut --no-sandbox
 
       #- type: file
       #  dest: static
