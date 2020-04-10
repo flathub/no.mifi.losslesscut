@@ -73,6 +73,13 @@ modules:
               sha256: 86dd9a4bf4aee45f1a84c9f61cf1947c1d6dce9b9e8d2a907105da7852460d2f
           
     build-commands:
+      - mkdir -p /app/lib/ffmpeg/bin
+      - chmod a+x ffmpeg-static
+      - mv ffmpeg-static /app/lib/ffmpeg/bin
+      - ls -la /app/lib/ffmpeg/bin
+      - echo $FFMPEG_BIN
+      - /app/lib/ffmpeg/bin/ffmpeg-static -version
+
       - node --version
       - yarn --version
       - env TMPDIR=$FLATPAK_BUILDER_BUILDDIR/flatpak-node/tmp HOME=$PWD yarn config --offline set yarn-offline-mirror $FLATPAK_BUILDER_BUILDDIR/flatpak-node/yarn-mirror
@@ -114,14 +121,14 @@ modules:
       #  path: no.mifi.losslesscut.desktop
 
       - type: archive
-        url: https://github.com/mifi/lossless-cut/archive/v3.17.14.tar.gz
-        sha256: cafe957bd66ffd44e3808b12925285da9bce3bd3567ba7b93de95b5b735b0a9f
+        url: https://github.com/mifi/lossless-cut/archive/v3.18.0.tar.gz
+        sha256: 757eb4b4779de32d31492d9b2d54151f8e14cdedbee60b373e9463db3450fb65
 
       - type: file
         url: https://github.com/eugeneware/ffmpeg-static/releases/download/b4.2.2/linux-x64
         sha256: a5bdddd568b33d279602673499a1a2ba84962a4a3b0ddb6d6e753cbefa4679e6
-        dest-filename: ffmpeg-static--where-does-this-go
-        dest: node_modules/
+        dest-filename: ffmpeg-static
+        dest: .
 
       - type: script
         dest-filename: run.sh
