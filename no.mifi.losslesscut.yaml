@@ -92,7 +92,7 @@ modules:
 
       # Install the required static files
       - install run.sh /app/bin/run.sh
-      - desktop-file-edit --set-key Exec --set-value /app/bin/run.sh  src/no.mifi.losslesscut.desktop
+      - desktop-file-edit --set-key Exec --set-value /app/bin/run.sh  no.mifi.losslesscut.desktop
       - install -Dm 0644 no.mifi.losslesscut.desktop  /app/share/applications/no.mifi.losslesscut.desktop
       - install -Dm 0644 no.mifi.losslesscut.appdata.xml  /app/share/metainfo/no.mifi.losslesscut.appdata.xml
       - install -Dm 0644 src/icon.svg /app/share/icons/hicolor/scalable/apps/no.mifi.losslesscut.svg
