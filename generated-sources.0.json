@@ -4997,9 +4997,9 @@
     },
     {
         "type": "file",
-        "url": "https://registry.yarnpkg.com/ffmpeg-static/-/ffmpeg-static-4.2.0.tgz#b6a37002ee0e2d0e4cefa083ca042b9ad8bec302",
-        "sha512": "2c741c7406f9f5e38425f6b915c8e26757014e49bbf99c2776702120d800a3fd5fa8a9d939c86bdb05c463fe392013241746e64cee2b63d60f7b3b63f6211d35",
-        "dest-filename": "ffmpeg-static-4.2.0.tgz",
+        "url": "https://registry.yarnpkg.com/ffmpeg-static/-/ffmpeg-static-4.2.1.tgz#10819f35f0f4bae775293be3fdffa74b87d65848",
+        "sha512": "bcb84a04da8cc2da197b7a4f41df10506270952d00e5d4eed0454943d32f8ec21ab83ad41f3147a365c9dc1d5225b2af1674157799195c82becea64051c4f4a9",
+        "dest-filename": "ffmpeg-static-4.2.1.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
