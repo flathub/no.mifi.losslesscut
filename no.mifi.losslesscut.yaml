@@ -134,7 +134,7 @@ modules:
       - type: script
         dest-filename: run.sh
         commands:
-          - env FFMPEG_BIN=/app/lib/ffmpeg/bin/   /app/lossless-cut/lossless-cut --no-sandbox
+          - env FFMPEG_BIN=/app/lib/ffmpeg/bin/   /app/lossless-cut/losslesscut --no-sandbox
 
       #- type: file
       #  dest: static
