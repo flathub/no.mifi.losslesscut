@@ -97,6 +97,9 @@ modules:
       - install -Dm 0644 no.mifi.losslesscut.appdata.xml  /app/share/metainfo/no.mifi.losslesscut.appdata.xml
       - install -Dm 0644 src/icon.svg /app/share/icons/hicolor/scalable/apps/no.mifi.losslesscut.svg
 
+      # This seems to be a bug in the ffmpeg-static package: https://github.com/eugeneware/ffmpeg-static/issues/37#issuecomment-625327422
+      - install -Dm a+rx /app/lib/ffmpeg/bin/ffmpeg-static   /app/lossless-cut/resources/node_modules/ffmpeg-static/ffmpeg
+
     sources:
       # The chromedriver package tries to download a bunch of files
       # outside of the normal npm dependencies.  Pre-download them and
@@ -134,7 +137,7 @@ modules:
       - type: script
         dest-filename: run.sh
         commands:
-          - env FFMPEG_BIN=/app/lib/ffmpeg/bin/   /app/lossless-cut/losslesscut --no-sandbox
+          - env FFMPEG_BIN=/app/lib/ffmpeg/bin/ffmpeg-static   /app/lossless-cut/losslesscut --no-sandbox
 
       #- type: file
       #  dest: static
