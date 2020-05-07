@@ -1,6 +1,14 @@
 app-id: no.mifi.losslesscut
 runtime: org.freedesktop.Platform
 runtime-version: '19.08'
+add-extensions:
+  org.freedesktop.Platform.ffmpeg-full:
+    directory: lib/ffmpeg
+    add-ld-path: "."
+    version: "19.08"
+    autodownload: True
+    autodelete: False
+
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.node10
@@ -43,6 +51,7 @@ modules:
       env:
         NPM_CONFIG_LOGLEVEL: info
         npm_config_nodedir: /usr/lib/sdk/node10
+        FFMPEG_BIN: /app/lib/ffmpeg/bin/ffmpeg-static
 
         # Tell caches where we pre-downloaded things.
         npm_config_cache: /run/build/losless-cut/flatpak-node/npm-cache/
@@ -64,6 +73,14 @@ modules:
               sha256: 86dd9a4bf4aee45f1a84c9f61cf1947c1d6dce9b9e8d2a907105da7852460d2f
           
     build-commands:
+      - mkdir -p /app/lib/ffmpeg/bin
+      - chmod a+x ffmpeg-static
+      - mv ffmpeg-static /app/lib/ffmpeg/bin
+      - ls -la /app/lib/ffmpeg/bin
+      - echo $FFMPEG_BIN
+      - ls -la $(echo ${FFMPEG_BIN})
+      - /app/lib/ffmpeg/bin/ffmpeg-static -version
+
       - node --version
       - yarn --version
       - env TMPDIR=$FLATPAK_BUILDER_BUILDDIR/flatpak-node/tmp HOME=$PWD yarn config --offline set yarn-offline-mirror $FLATPAK_BUILDER_BUILDDIR/flatpak-node/yarn-mirror
@@ -75,9 +92,8 @@ modules:
 
       # Install the required static files
       - install run.sh /app/bin/run.sh
-      - desktop-file-edit --set-key Exec --set-value /app/bin/run.sh  src/no.mifi.losslesscut.desktop
-      - install -Dm 0644 src/no.mifi.losslesscut.desktop  /app/share/applications/no.mifi.losslesscut.desktop
-      #- install -Dm 0644 static/no.mifi.losslesscut.appdata.xml  /app/share/metainfo/no.mifi.losslesscut.appdata.xml
+      - desktop-file-edit --set-key Exec --set-value /app/bin/run.sh  no.mifi.losslesscut.desktop
+      - install -Dm 0644 no.mifi.losslesscut.desktop  /app/share/applications/no.mifi.losslesscut.desktop
       - install -Dm 0644 no.mifi.losslesscut.appdata.xml  /app/share/metainfo/no.mifi.losslesscut.appdata.xml
       - install -Dm 0644 src/icon.svg /app/share/icons/hicolor/scalable/apps/no.mifi.losslesscut.svg
 
@@ -106,13 +122,19 @@ modules:
       #  path: no.mifi.losslesscut.desktop
 
       - type: archive
-        url: https://github.com/mifi/lossless-cut/archive/v2.6.2.tar.gz
-        sha256: 71dd7773625ca9a30eabd2968475c50bd694467607b13bd6c5ed932f57b7fa8f
+        url: https://github.com/mifi/lossless-cut/archive/v3.22.3.tar.gz
+        sha256: a54af148ddbad23ac0ea2f0a670a4ee83eb12d8d38c9a96f56b7451a631ec7ef
+
+      - type: file
+        url: https://github.com/eugeneware/ffmpeg-static/releases/download/b4.2.2/linux-x64
+        sha256: a5bdddd568b33d279602673499a1a2ba84962a4a3b0ddb6d6e753cbefa4679e6
+        dest-filename: ffmpeg-static
+        dest: .
 
       - type: script
         dest-filename: run.sh
         commands:
-          - /app/lossless-cut/lossless-cut --no-sandbox
+          - env FFMPEG_BIN=/app/lib/ffmpeg/bin/   /app/lossless-cut/lossless-cut --no-sandbox
 
       #- type: file
       #  dest: static
@@ -121,11 +143,11 @@ modules:
       - generated-sources.0.json
 
       - type: patch
-        path: 0001-desktop-Added-an-initial-desktop-file.patch
-
-      - type: patch
         path: 0002-desktop-add-appdata-file.patch
         # Weird. "paths" doesn't seem to work...
         #paths:
         #    - 0001-desktop-Added-an-initial-desktop-file.patch0001-package-Add-Desktop-file-entry.patch
         #    - 0002-desktop-add-appdata-file.patch
+
+      - type: patch
+        path: 0001-appdata-change-launchable-id-to-reflect-the-appid.patch
