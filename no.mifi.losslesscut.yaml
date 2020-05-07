@@ -148,3 +148,6 @@ modules:
         #paths:
         #    - 0001-desktop-Added-an-initial-desktop-file.patch0001-package-Add-Desktop-file-entry.patch
         #    - 0002-desktop-add-appdata-file.patch
+
+      - type: patch
+        path: 0001-appdata-change-launchable-id-to-reflect-the-appid.patch
