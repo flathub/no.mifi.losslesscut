@@ -1,24 +1,24 @@
-From 8d2a3bc0094da6c5433932792299eedf61679ad9 Mon Sep 17 00:00:00 2001
+From 4f748846ac4f99cfe1899518ead3e89c8c52e1b1 Mon Sep 17 00:00:00 2001
 From: Tobias Mueller <muelli@cryptobitch.de>
-Date: Wed, 6 May 2020 22:46:26 +0200
-Subject: [PATCH] appdata: add 3.22.3
+Date: Tue, 14 Jul 2020 10:34:15 +0200
+Subject: [PATCH] appdata: add 3.23.8 release
 
 ---
  no.mifi.losslesscut.appdata.xml | 1 +
  1 file changed, 1 insertion(+)
 
 diff --git a/no.mifi.losslesscut.appdata.xml b/no.mifi.losslesscut.appdata.xml
-index f63b1b2..5b8e255 100644
+index 3ed5f66..77c96db 100644
 --- a/no.mifi.losslesscut.appdata.xml
 +++ b/no.mifi.losslesscut.appdata.xml
 @@ -18,6 +18,7 @@
    <url type="bugtracker">https://github.com/mifi/lossless-cut/issues</url>
    <url type="donation">https://paypal.me/mifino</url>
    <releases>
-+    <release version="3.22.3" date="2020-05-06" />
++    <release version="3.22.8" date="2020-07-10" />
+     <release version="3.22.3" date="2020-05-06" />
      <release version="3.22.2" date="2020-05-04" />
      <release version="3.18.0" date="2020-04-10" />
-     <release version="3.17.14" date="2020-03-30" />
 -- 
 2.17.1
 
