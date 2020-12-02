@@ -7,7 +7,7 @@ add-extensions:
     add-ld-path: "."
     version: "20.08"
     autodownload: True
-    autodelete: False
+    #autodelete: False
 
 sdk: org.freedesktop.Sdk
 sdk-extensions:
@@ -86,7 +86,7 @@ modules:
       - env TMPDIR=$FLATPAK_BUILDER_BUILDDIR/flatpak-node/tmp HOME=$PWD yarn config --offline set yarn-offline-mirror $FLATPAK_BUILDER_BUILDDIR/flatpak-node/yarn-mirror
       - 'yarn --offline'
       
-      - yarn run pack-linux dir
+      - yarn --offline run pack-linux dir
       - mkdir -p /app/lossless-cut
       - cp -ar dist/linux-unpacked/* /app/lossless-cut/
 
@@ -125,8 +125,8 @@ modules:
       #  path: no.mifi.losslesscut.desktop
 
       - type: archive
-        url: https://github.com/mifi/lossless-cut/archive/v3.22.3.tar.gz
-        sha256: a54af148ddbad23ac0ea2f0a670a4ee83eb12d8d38c9a96f56b7451a631ec7ef
+        url: https://github.com/mifi/lossless-cut/archive/v3.27.0.tar.gz
+        sha256: f8c0b1cd5c57ddd59877d0c888e540020f4136b93febdb949534ccc729bfa467
 
       - type: file
         url: https://github.com/eugeneware/ffmpeg-static/releases/download/b4.2.2/linux-x64
@@ -146,11 +146,7 @@ modules:
       - generated-sources.0.json
 
       - type: patch
-        path: 0002-desktop-add-appdata-file.patch
-        # Weird. "paths" doesn't seem to work...
-        #paths:
-        #    - 0001-desktop-Added-an-initial-desktop-file.patch0001-package-Add-Desktop-file-entry.patch
-        #    - 0002-desktop-add-appdata-file.patch
+        paths:
+            - 0001-appdata-add-3.23.8-release.patch
+            - 0001-appdata-added-3.27.0-release.patch
 
-      - type: patch
-        path: 0001-appdata-change-launchable-id-to-reflect-the-appid.patch
