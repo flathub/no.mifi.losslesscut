@@ -5844,13 +5844,6 @@
     },
     {
         "type": "file",
-        "url": "https://registry.yarnpkg.com/hotkeys-js/-/hotkeys-js-3.8.1.tgz#fa7051f73bf1dc92a8b8d580a40b247f91966376",
-        "sha512": "62585542dc86f5fd5bec686dcdd851d0f97e708983d59aca23acd851aed02ddd33b938622fb47367e00d272cbbcfe926702a4d6017f93e305adc28e24393c5a7",
-        "dest-filename": "hotkeys-js-3.8.1.tgz",
-        "dest": "flatpak-node/yarn-mirror"
-    },
-    {
-        "type": "file",
         "url": "https://registry.yarnpkg.com/hpack.js/-/hpack.js-2.1.6.tgz#87774c0949e513f42e84575b3c45681fade2a0b2",
         "sha1": "87774c0949e513f42e84575b3c45681fade2a0b2",
         "dest-filename": "hpack.js-2.1.6.tgz",
@@ -8087,6 +8080,13 @@
         "url": "https://registry.yarnpkg.com/mount-point/-/mount-point-3.0.0.tgz#665cb9edebe80d110e658db56c31d0aef51a8f97",
         "sha1": "665cb9edebe80d110e658db56c31d0aef51a8f97",
         "dest-filename": "mount-point-3.0.0.tgz",
+        "dest": "flatpak-node/yarn-mirror"
+    },
+    {
+        "type": "file",
+        "url": "https://registry.yarnpkg.com/mousetrap/-/mousetrap-1.6.5.tgz#8a766d8c272b08393d5f56074e0b5ec183485bf9",
+        "sha512": "40da389047a9688070893f020e13fdf2e9937ada7e24d7d06015af0b5a5cebf38089bb97b51731679f10cfcb24bc41d8bd44677bfed1f13e55a0e23bac3b0450",
+        "dest-filename": "mousetrap-1.6.5.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
