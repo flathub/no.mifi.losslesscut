@@ -993,9 +993,9 @@
     },
     {
         "type": "file",
-        "url": "https://registry.yarnpkg.com/@derhuerst/http-basic/-/http-basic-8.2.0.tgz#d009a4a6820dea756061d21842e79d1dbf9a1e11",
-        "sha512": "bf572a3d4a458d4f032275b86240bd71a18acbc91492acf4cf5d320876b09318296893c8774179c4a8bc7d4639aea0b9f05f4cbb3f53d77ea3351799407f7123",
-        "dest-filename": "@derhuerst-http-basic-8.2.0.tgz",
+        "url": "https://registry.yarnpkg.com/@derhuerst/http-basic/-/http-basic-8.2.1.tgz#11e3964cf1f2fb40806f9a0fff0c451bb7526093",
+        "sha512": "4669fba9042e970dacc49f2a19f67b3aea8c5ae873f15f8be719d828c17971755c62a9a05aa95510099ef74a45ed86bc3958715712e6861d2b23693ab7b2135b",
+        "dest-filename": "@derhuerst-http-basic-8.2.1.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
@@ -1462,9 +1462,9 @@
     },
     {
         "type": "file",
-        "url": "https://registry.yarnpkg.com/@types/node/-/node-10.17.18.tgz#ae364d97382aacdebf583fa4e7132af2dfe56a0c",
-        "sha512": "0d0da197f265de0df72ae01439c32b7003adb1bcdbfb2fee7da93301d78af73fc7ff1b2f9296c44d965b3cd308890ba4db87f9651302719215880c3214888a9a",
-        "dest-filename": "@types-node-10.17.18.tgz",
+        "url": "https://registry.yarnpkg.com/@types/node/-/node-10.17.48.tgz#726e7f25d00bf58d79c8f00dd586dd9a10d06a4f",
+        "sha512": "02097ac5b60fe8538c0de02caf741567e83b633834ba13c75b1d23e60e0b15d5011d5b6ab54fa01faeb493f94211ee74ea324b3866c4cec9ea3c34d918940b6a",
+        "dest-filename": "@types-node-10.17.48.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
@@ -1861,9 +1861,9 @@
     },
     {
         "type": "file",
-        "url": "https://registry.yarnpkg.com/agent-base/-/agent-base-6.0.0.tgz#5d0101f19bbfaed39980b22ae866de153b93f09a",
-        "sha512": "8f543b7120aa37e030ae60ddfa9ce0a9cd3f3690bae79c766d47f96634483bbec370d0459a1f8e81137317a38a7420bd45209bd7d7c677df7e6e15c576444dab",
-        "dest-filename": "agent-base-6.0.0.tgz",
+        "url": "https://registry.yarnpkg.com/agent-base/-/agent-base-6.0.2.tgz#49fff58577cfee3f37176feab4c22e00f86d7f77",
+        "sha512": "45937035c945efe312ffc6c383bd1a9a0df6772799199c620ee42667128b025423af78c6c8bc7ee0a924e7c50eec3d90760148402a2fb92b991129dee911ba5d",
+        "dest-filename": "agent-base-6.0.2.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
@@ -4990,16 +4990,9 @@
     },
     {
         "type": "file",
-        "url": "https://registry.yarnpkg.com/ffmpeg-static/-/ffmpeg-static-4.2.1.tgz#10819f35f0f4bae775293be3fdffa74b87d65848",
-        "sha512": "bcb84a04da8cc2da197b7a4f41df10506270952d00e5d4eed0454943d32f8ec21ab83ad41f3147a365c9dc1d5225b2af1674157799195c82becea64051c4f4a9",
-        "dest-filename": "ffmpeg-static-4.2.1.tgz",
-        "dest": "flatpak-node/yarn-mirror"
-    },
-    {
-        "type": "file",
-        "url": "https://registry.yarnpkg.com/ffprobe-static/-/ffprobe-static-3.0.0.tgz#479689c8a237987beca5627968f3d87429bf569d",
-        "sha512": "2d9d528f84474bde6dfd1799b516c298c1160c397b71f20cc2684d80265c76d3a046500768618eba9a1cd7ae90f4057e4fb9579d4beee4761ccdcb27ebd73a7f",
-        "dest-filename": "ffprobe-static-3.0.0.tgz",
+        "url": "https://registry.yarnpkg.com/ffmpeg-ffprobe-static/-/ffmpeg-ffprobe-static-4.3.1-rc.2.tgz#f12d865d5a5ff3ced1128175e23403f099a4f0ad",
+        "sha512": "f0f7f29d764e1f108d23747ff0c05878daa9190b7c25838ae98c16f14150d426ada50f442c1c578c55ac594bea05ce2b6a8a148bd3ba2725d51e06f8d1042f87",
+        "dest-filename": "ffmpeg-ffprobe-static-4.3.1-rc.2.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
