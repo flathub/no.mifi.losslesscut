@@ -125,8 +125,8 @@ modules:
       #  path: no.mifi.losslesscut.desktop
 
       - type: archive
-        url: https://github.com/mifi/lossless-cut/archive/v3.29.1.tar.gz
-        sha256: b9065f93e3809e4081fc9b8c27587990b31cc5d443a786c61696dee03972c915
+        url: https://github.com/mifi/lossless-cut/archive/v3.29.0.tar.gz
+        sha256: 0457dffdd4f0dc1d0bcc3f1f90114becf543d8066344eea41738377b290d7e9b
 
       - type: file
         url: https://github.com/eugeneware/ffmpeg-static/releases/download/b4.2.2/linux-x64
@@ -148,5 +148,4 @@ modules:
       - type: patch
         paths:
             - add-appdata.patch
-            - 0001-appdata-add-v3.29.1.patch
 
