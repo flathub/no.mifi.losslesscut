@@ -77,6 +77,8 @@ modules:
       - install -Dm a+rx ffmpeg-linux-x64   node_modules/ffmpeg-ffprobe-static/
       - install -Dm a+rx ffprobe-linux-x64   node_modules/ffmpeg-ffprobe-static/
       #- install -Dm a+rx ffmpeg-linux-static   /app/lossless-cut/resources/node_modules/ffmpeg-static/ffmpeg
+      # The following shows how the files are deployed, but it seems the directory is re-created
+      - ls -la node_modules/ffmpeg-ffprobe-static/
 
       - node --version
       - yarn --version
