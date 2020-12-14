@@ -1,0 +1,24 @@
+From 5e26716e65abd4bd6750bccf40f4dc50a9a5aad2 Mon Sep 17 00:00:00 2001
+From: Tobias Mueller <muelli@cryptobitch.de>
+Date: Fri, 11 Dec 2020 08:52:36 +0100
+Subject: [PATCH] appdata: add v3.29.1
+
+---
+ no.mifi.losslesscut.appdata.xml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/no.mifi.losslesscut.appdata.xml b/no.mifi.losslesscut.appdata.xml
+index facca5e..e38b619 100644
+--- a/no.mifi.losslesscut.appdata.xml
++++ b/no.mifi.losslesscut.appdata.xml
+@@ -18,6 +18,7 @@
+   <url type="bugtracker">https://github.com/mifi/lossless-cut/issues</url>
+   <url type="donation">https://paypal.me/mifino</url>
+   <releases>
++    <release version="3.29.1" date="2020-12-11" />
+     <release version="3.29.0" date="2020-12-10" />
+     <release version="3.27.0" date="2020-11-26" />
+     <release version="3.22.8" date="2020-07-10" />
+-- 
+2.25.1
+
