@@ -73,13 +73,10 @@ modules:
               sha256: 86dd9a4bf4aee45f1a84c9f61cf1947c1d6dce9b9e8d2a907105da7852460d2f
           
     build-commands:
-      - mkdir -p /app/lib/ffmpeg/bin
-      - chmod a+x ffmpeg-static
-      - mv ffmpeg-static /app/lib/ffmpeg/bin
-      - ls -la /app/lib/ffmpeg/bin
-      - echo $FFMPEG_BIN
-      - ls -la $(echo ${FFMPEG_BIN})
-      - /app/lib/ffmpeg/bin/ffmpeg-static -version
+      # https://github.com/flathub/no.mifi.losslesscut/pull/11#issuecomment-744517432
+      - install -Dm a+rx ffmpeg-linux-x64   node_modules/ffmpeg-ffprobe-static/
+      - install -Dm a+rx ffprobe-linux-x64   node_modules/ffmpeg-ffprobe-static/
+      #- install -Dm a+rx ffmpeg-linux-static   /app/lossless-cut/resources/node_modules/ffmpeg-static/ffmpeg
 
       - node --version
       - yarn --version
@@ -97,8 +94,6 @@ modules:
       - install -Dm 0644 no.mifi.losslesscut.appdata.xml  /app/share/metainfo/no.mifi.losslesscut.appdata.xml
       - install -Dm 0644 src/icon.svg /app/share/icons/hicolor/scalable/apps/no.mifi.losslesscut.svg
 
-      # This seems to be a bug in the ffmpeg-static package: https://github.com/eugeneware/ffmpeg-static/issues/37#issuecomment-625327422
-      - install -Dm a+rx /app/lib/ffmpeg/bin/ffmpeg-static   /app/lossless-cut/resources/node_modules/ffmpeg-static/ffmpeg
 
     sources:
       # The chromedriver package tries to download a bunch of files
@@ -129,9 +124,13 @@ modules:
         sha256: b9065f93e3809e4081fc9b8c27587990b31cc5d443a786c61696dee03972c915
 
       - type: file
-        url: https://github.com/eugeneware/ffmpeg-static/releases/download/b4.2.2/linux-x64
-        sha256: a5bdddd568b33d279602673499a1a2ba84962a4a3b0ddb6d6e753cbefa4679e6
-        dest-filename: ffmpeg-static
+        url: https://github.com/descriptinc/ffmpeg-ffprobe-static/releases/download/b4.3.1-rc.5/ffmpeg-linux-x64
+        sha256: e1c8c3c8c2073d9f83a8d74423c3eff79eaaa4227ca427720cab314eee1d7c57
+        dest: .
+
+      - type: file
+        url: https://github.com/descriptinc/ffmpeg-ffprobe-static/releases/download/b4.3.1-rc.5/ffprobe-linux-x64
+        sha256: c0b7a30d3f199f4cda1279cc57ae21cd09559d4bb374a2f763a57d279d23d12d
         dest: .
 
       - type: script
