@@ -11,7 +11,7 @@ add-extensions:
 
 sdk: org.freedesktop.Sdk
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.node10
+  - org.freedesktop.Sdk.Extension.node14
 
 command: /app/bin/run.sh
 finish-args:
@@ -30,7 +30,7 @@ modules:
   - name: node
     buildsystem: simple
     build-commands:
-      - '/usr/lib/sdk/node10/install-sdk.sh'
+      - '/usr/lib/sdk/node14/install-sdk.sh'
 
   - name: yarn
     buildsystem: simple
@@ -47,10 +47,10 @@ modules:
   - name: losless-cut
     buildsystem: simple
     build-options:
-      append-path: /usr/lib/sdk/node10/bin
+      append-path: /usr/lib/sdk/node14/bin
       env:
         NPM_CONFIG_LOGLEVEL: info
-        npm_config_nodedir: /usr/lib/sdk/node10
+        npm_config_nodedir: /usr/lib/sdk/node14
         FFMPEG_BIN: /app/lib/ffmpeg/bin/ffmpeg-static
 
         # Tell caches where we pre-downloaded things.
