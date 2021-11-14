@@ -61,6 +61,7 @@ modules:
         ELECTRON_CACHE: /run/build/losless-cut/flatpak-node/electron-cache
 
     modules:
+        - ffmpeg.yaml
         - name: phantomjs
           buildsystem: "simple"
           build-commands: 
@@ -73,19 +74,15 @@ modules:
               sha256: 86dd9a4bf4aee45f1a84c9f61cf1947c1d6dce9b9e8d2a907105da7852460d2f
           
     build-commands:
-      - mkdir -p /app/lib/ffmpeg/bin
-      - chmod a+x ffmpeg-static
-      - mv ffmpeg-static /app/lib/ffmpeg/bin
-      - ls -la /app/lib/ffmpeg/bin
-      - echo $FFMPEG_BIN
-      - ls -la $(echo ${FFMPEG_BIN})
-      - /app/lib/ffmpeg/bin/ffmpeg-static -version
-
+      # We need to create this directory for the extension.
+      - mkdir -p /app/lib/ffmpeg
       - node --version
       - yarn --version
       - env TMPDIR=$FLATPAK_BUILDER_BUILDDIR/flatpak-node/tmp HOME=$PWD yarn config --offline set yarn-offline-mirror $FLATPAK_BUILDER_BUILDDIR/flatpak-node/yarn-mirror
       - 'yarn --offline'
-      
+
+      - install -Dm a+rx /app/bin/ffmpeg  ./ffmpeg/linux/ffmpeg
+      - install -Dm a+rx /app/bin/ffprobe  ./ffmpeg/linux/ffprobe
       - yarn --offline run pack-linux dir
       - mkdir -p /app/lossless-cut
       - cp -ar dist/linux-unpacked/* /app/lossless-cut/
@@ -97,9 +94,11 @@ modules:
       - install -Dm 0644 no.mifi.losslesscut.appdata.xml  /app/share/metainfo/no.mifi.losslesscut.appdata.xml
       - install -Dm 0644 src/icon.svg /app/share/icons/hicolor/scalable/apps/no.mifi.losslesscut.svg
 
-      # This seems to be a bug in the ffmpeg-static package: https://github.com/eugeneware/ffmpeg-static/issues/37#issuecomment-625327422
-      - install -Dm a+rx /app/lib/ffmpeg/bin/ffmpeg-static   /app/lossless-cut/resources/node_modules/ffmpeg-static/ffmpeg
+      #- install -Dm a+rx /usr/bin/ffmpeg  /app/lossless-cut/resources/ffmpeg
+      #- install -Dm a+rx /usr/bin/ffprobe  /app/lossless-cut/resources/ffprobe
 
+      # This is what the app would call. Let's try it ourselves to see whether we're good.
+      #- /app/lossless-cut/resources/ffmpeg -hide_banner -f lavfi -i nullsrc=s=256x256:d=1 -f null
     sources:
       # The chromedriver package tries to download a bunch of files
       # outside of the normal npm dependencies.  Pre-download them and
