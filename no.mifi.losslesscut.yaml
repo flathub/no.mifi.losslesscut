@@ -44,7 +44,7 @@ modules:
         url: https://github.com/yarnpkg/yarn/releases/download/v1.19.1/yarn-v1.19.1.tar.gz
         sha256: 34293da6266f2aae9690d59c2d764056053ff7eebc56b80b8df05010c3da9343
 
-  - name: losless-cut
+  - name: lossless-cut
     buildsystem: simple
     build-options:
       append-path: /usr/lib/sdk/node14/bin
@@ -53,11 +53,11 @@ modules:
         npm_config_nodedir: /usr/lib/sdk/node14
 
         # Tell caches where we pre-downloaded things.
-        npm_config_cache: /run/build/losless-cut/flatpak-node/npm-cache/
-        electron_config_cache: /run/build/losless-cut/flatpak-node/electron-cache
+        npm_config_cache: /run/build/lossless-cut/flatpak-node/npm-cache/
+        electron_config_cache: /run/build/lossless-cut/flatpak-node/electron-cache
 
         # Tell the chromedriver npm package where we pre-downloaded things.
-        ELECTRON_CACHE: /run/build/losless-cut/flatpak-node/electron-cache
+        ELECTRON_CACHE: /run/build/lossless-cut/flatpak-node/electron-cache
 
     modules:
         - ffmpeg.yaml
