@@ -5,23 +5,26 @@ config-opts:
   - --disable-doc
   - --disable-manpages
   - --disable-stripping
-  #- --disable-ffplay
+  - --disable-ffplay
   - --enable-ffprobe
+
+  - --disable-securetransport
+  - --enable-runtime-cpudetect
 
   - --enable-gpl
   - --enable-version3
   - --enable-optimizations
   - --enable-postproc
   - --enable-pthreads
-  - --enable-gnutls
+  #- --enable-gnutls
   - --enable-libxcb-xfixes
   - --enable-opengl
-  - --enable-sdl2
+  #- --enable-sdl2
   - --enable-vaapi
   - --enable-vdpau
-  - --enable-zlib
-  - --enable-bzlib
-  - --enable-lzma
+  #- --enable-zlib
+  #- --enable-bzlib
+  #- --enable-lzma
 
   - --enable-fontconfig
   - --enable-libfontconfig
@@ -30,19 +33,24 @@ config-opts:
   # copied from another manifest
   - --enable-avcodec
   - --enable-avfilter
+  - --enable-filters
   - --enable-avdevice
   - --enable-avresample
-  - --enable-libxml2
+  #- --enable-libxml2
   - --enable-swscale
 
   - --enable-libxcb
 
   - --enable-protocol=file
 
+#post-install:
+    # This is what losslesscut tried to execute:
+    #- /app/bin/ffmpeg -hide_banner -f lavfi -i nullsrc=s=256x256:d=1 -f null -
+
 sources:
   - type: archive
-    url: https://ffmpeg.org/releases/ffmpeg-4.2.tar.xz
-    sha256: 023f10831a97ad93d798f53a3640e55cd564abfeba807ecbe8524dac4fedecd5
+    url: https://ffmpeg.org/releases/ffmpeg-4.4.tar.xz
+    sha256: 06b10a183ce5371f915c6bb15b7b1fffbe046e8275099c96affc29e17645d909
     x-checker-data:
           type: anitya
           project-id: 5405
