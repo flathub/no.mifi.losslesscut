@@ -140,4 +140,5 @@ modules:
       - type: patch
         paths:
             - add-appdata.patch
+            - no-asar.patch
 
