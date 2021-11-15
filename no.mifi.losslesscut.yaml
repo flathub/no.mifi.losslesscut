@@ -1,14 +1,6 @@
 app-id: no.mifi.losslesscut
 runtime: org.freedesktop.Platform
 runtime-version: '20.08'
-add-extensions:
-  org.freedesktop.Platform.ffmpeg-full:
-    directory: lib/ffmpeg
-    add-ld-path: "."
-    version: "20.08"
-    autodownload: True
-    #autodelete: False
-
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.node14
@@ -73,8 +65,6 @@ modules:
               sha256: 86dd9a4bf4aee45f1a84c9f61cf1947c1d6dce9b9e8d2a907105da7852460d2f
           
     build-commands:
-      # We need to create this directory for the extension.
-      - mkdir -p /app/lib/ffmpeg
       - node --version
       - yarn --version
       - env TMPDIR=$FLATPAK_BUILDER_BUILDDIR/flatpak-node/tmp HOME=$PWD yarn config --offline set yarn-offline-mirror $FLATPAK_BUILDER_BUILDDIR/flatpak-node/yarn-mirror
