@@ -99,13 +99,6 @@ modules:
         dest-filename: SHASUMS256.txt-4.0.0
         dest: flatpak-node/electron-cache
 
-      #- type: archive
-      #  url: https://github.com/mifi/lossless-cut/releases/download/v2.6.2/lossless-cut-2.6.2.tar.bz2
-      #  sha256: 5b41c0a9283574a2cba7fe62b21ca60a6823b902c45a53675b038169b3eb836e
-
-      #- type: file
-      #  path: no.mifi.losslesscut.desktop
-
       - type: archive
         url: https://github.com/mifi/lossless-cut/archive/v3.40.0.tar.gz
         sha256: c6f47d9a19b4537256abfb87abeca908217d52bda4bf3975abed3abe82cc83ce
