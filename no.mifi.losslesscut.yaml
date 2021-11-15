@@ -51,7 +51,6 @@ modules:
       env:
         NPM_CONFIG_LOGLEVEL: info
         npm_config_nodedir: /usr/lib/sdk/node14
-        FFMPEG_BIN: /app/lib/ffmpeg/bin/ffmpeg-static
 
         # Tell caches where we pre-downloaded things.
         npm_config_cache: /run/build/losless-cut/flatpak-node/npm-cache/
@@ -127,16 +126,10 @@ modules:
         url: https://github.com/mifi/lossless-cut/archive/v3.40.0.tar.gz
         sha256: c6f47d9a19b4537256abfb87abeca908217d52bda4bf3975abed3abe82cc83ce
 
-      - type: file
-        url: https://github.com/eugeneware/ffmpeg-static/releases/download/b4.2.2/linux-x64
-        sha256: a5bdddd568b33d279602673499a1a2ba84962a4a3b0ddb6d6e753cbefa4679e6
-        dest-filename: ffmpeg-static
-        dest: .
-
       - type: script
         dest-filename: run.sh
         commands:
-          - env FFMPEG_BIN=/app/lib/ffmpeg/bin/ffmpeg-static   /app/lossless-cut/losslesscut --no-sandbox
+          - /app/lossless-cut/losslesscut --no-sandbox
 
       #- type: file
       #  dest: static
