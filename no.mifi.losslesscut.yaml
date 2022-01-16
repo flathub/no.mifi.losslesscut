@@ -100,8 +100,8 @@ modules:
         dest: flatpak-node/electron-cache
 
       - type: archive
-        url: https://github.com/mifi/lossless-cut/archive/v3.40.0.tar.gz
-        sha256: c6f47d9a19b4537256abfb87abeca908217d52bda4bf3975abed3abe82cc83ce
+        url: https://github.com/mifi/lossless-cut/archive/v3.42.0.tar.gz
+        sha256: 8417756f1aef12f32aaf16854a0fe0c6b371ebf8cf52e7a0dc7d2cdc9173e110
 
       - type: script
         dest-filename: run.sh

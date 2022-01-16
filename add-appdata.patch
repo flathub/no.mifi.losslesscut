@@ -1,24 +1,24 @@
-From a6d7441be2b0a6475c12008c9e54582d0bd2631f Mon Sep 17 00:00:00 2001
+From ca64dfe2a7b713f882bea2517e128e52c548fd8b Mon Sep 17 00:00:00 2001
 From: Tobias Mueller <muelli@cryptobitch.de>
-Date: Sat, 13 Nov 2021 15:41:40 +0100
-Subject: [PATCH] appdata: add 3.40.0
+Date: Sun, 16 Jan 2022 21:14:40 +0100
+Subject: [PATCH] appdata: added 3.42.0
 
 ---
  no.mifi.losslesscut.appdata.xml | 1 +
  1 file changed, 1 insertion(+)
 
 diff --git a/no.mifi.losslesscut.appdata.xml b/no.mifi.losslesscut.appdata.xml
-index 06f20bc..4e50694 100644
+index 4e50694..b0c60a7 100644
 --- a/no.mifi.losslesscut.appdata.xml
 +++ b/no.mifi.losslesscut.appdata.xml
 @@ -18,6 +18,7 @@
    <url type="bugtracker">https://github.com/mifi/lossless-cut/issues</url>
    <url type="donation">https://paypal.me/mifino/usd</url>
    <releases>
-+    <release version="3.40.0" date="2021-11-13" />
++    <release version="3.42.0" date="2022-01-16" />
+     <release version="3.40.0" date="2021-11-13" />
      <release version="3.37.0" date="2021-07-25" />
      <release version="3.31.1" date="2021-01-25" />
-     <release version="3.30.0" date="2020-12-15" />
 -- 
 2.25.1
 
