@@ -1567,9 +1567,9 @@
     },
     {
         "type": "file",
-        "url": "https://registry.yarnpkg.com/@types/js-cookie/-/js-cookie-2.2.5.tgz#38dfaacae8623b37cc0b0d27398e574e3fc28b1e",
-        "sha512": "7299b0051707266999c7438653b68f57019619bb3888ac1561c864f62b8cb71342036ce8af075a4f3e0690b82cd961b189165114a9d5d64ead4541d7eed04cc6",
-        "dest-filename": "@types-js-cookie-2.2.5.tgz",
+        "url": "https://registry.yarnpkg.com/@types/js-cookie/-/js-cookie-2.2.7.tgz#226a9e31680835a6188e887f3988e60c04d3f6a3",
+        "sha512": "68b9166b40b4bcee5be12afbf7c136e9080e92cb3af149f46cb8eceeef6ac733d3e421bef03b8d4df7d6112e7c63326cde1ad500eb35c289f272a101a8d26e6c",
+        "dest-filename": "@types-js-cookie-2.2.7.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
@@ -4416,16 +4416,16 @@
     },
     {
         "type": "file",
-        "url": "https://registry.yarnpkg.com/eslint-config-airbnb-base/-/eslint-config-airbnb-base-14.2.1.tgz#8a2eb38455dc5a312550193b319cdaeef042cd1e",
-        "sha512": "18ead0c83b5511cd57cb6d14eefb01db20280789c195f1f91d925e6ad4571e578ef8e4b93adf8c5a28f80e996dc38fc3c8892a51fab3d5ea5f8554795d65903c",
-        "dest-filename": "eslint-config-airbnb-base-14.2.1.tgz",
+        "url": "https://registry.yarnpkg.com/eslint-config-airbnb-base/-/eslint-config-airbnb-base-15.0.0.tgz#6b09add90ac79c2f8d723a2580e07f3925afd236",
+        "sha512": "c5a5f7cf865921c14bbe1da850dbdc5f9a04a1f5dd6bb822626ba9955c683a0e40ec45c932b532a91811fa684384f2bc2d9e0fb6d14e06f0980db5f7b14a148a",
+        "dest-filename": "eslint-config-airbnb-base-15.0.0.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
         "type": "file",
-        "url": "https://registry.yarnpkg.com/eslint-config-airbnb/-/eslint-config-airbnb-18.2.1.tgz#b7fe2b42f9f8173e825b73c8014b592e449c98d9",
-        "sha512": "82564d0c4677e95765656a319ff6d4475affb1d14a3ddd661cf6ea52d91cb60346e324f60cb2ed2770fec8257e8f36427365759c156499d927389059e477347e",
-        "dest-filename": "eslint-config-airbnb-18.2.1.tgz",
+        "url": "https://registry.yarnpkg.com/eslint-config-airbnb/-/eslint-config-airbnb-19.0.4.tgz#84d4c3490ad70a0ffa571138ebcdea6ab085fdc3",
+        "sha512": "4fbe506105505f9ee388d82917daf529e80c20213de15630a0543230686bbdcfa507c605d84fccfcf6036907b500971668482a2c4f84ad75753a0ffee95cb37b",
+        "dest-filename": "eslint-config-airbnb-19.0.4.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
@@ -4927,9 +4927,9 @@
     },
     {
         "type": "file",
-        "url": "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.7.tgz#2004c02eb9436eee9a21446a6477debf17e81685",
-        "sha512": "fa16f1a0b6c531b44a0f0a215fc1a44dab5a1aa3ba25bee31b0a40970832d9b233db95ed466eca13324cefa4755a2353e52c19917e18ef94b0068964a6613b89",
-        "dest-filename": "follow-redirects-1.14.7.tgz",
+        "url": "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.8.tgz#016996fb9a11a100566398b1c6839337d7bfa8fc",
+        "sha512": "d71d12f545491ec429ac57040bfaa737304b708c6c8c057dd397ff5244316dc942b284d695a70234ea506bf6a7a1d2e5dae68428585f58ebccd9083befed79cc",
+        "dest-filename": "follow-redirects-1.14.8.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
@@ -8896,9 +8896,16 @@
     },
     {
         "type": "file",
-        "url": "https://registry.yarnpkg.com/react-use/-/react-use-13.27.1.tgz#e2ae2b708dafc7893c4772628801589aab9de370",
-        "sha512": "6c0c1da83317b39968bc46a75e72f58b395e75facf11452fd5a7e84d5079f5e52261c0f22ae97e33f753ff659c8078e863f47a425ad3719a16e11ee27f0bc17f",
-        "dest-filename": "react-use-13.27.1.tgz",
+        "url": "https://registry.yarnpkg.com/react-universal-interface/-/react-universal-interface-0.6.2.tgz#5e8d438a01729a4dbbcbeeceb0b86be146fe2b3b",
+        "sha512": "760f325dd7109af811d774489596d34503a852b0dc8855684816482f08c4d8b1484b1659f25a1524a024bb3b309798ecf011dd6bbf5b21bd9bf387a153c2235f",
+        "dest-filename": "react-universal-interface-0.6.2.tgz",
+        "dest": "flatpak-node/yarn-mirror"
+    },
+    {
+        "type": "file",
+        "url": "https://registry.yarnpkg.com/react-use/-/react-use-17.3.2.tgz#448abf515f47c41c32455024db28167cb6e53be8",
+        "sha512": "6e3ece0f4ff5c0bd372b25a6cc55c015ee36e73ce2b937fbabca25c026017ce7851d8d6a7ced4500c8d13902ec2d96301b8471eb7c407dbed701b06b26c66613",
+        "dest-filename": "react-use-17.3.2.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
@@ -9582,9 +9589,9 @@
     },
     {
         "type": "file",
-        "url": "https://registry.yarnpkg.com/simple-get/-/simple-get-4.0.0.tgz#73fa628278d21de83dadd5512d2cc1f4872bd675",
-        "sha512": "65a95919ec58af74c0d12c324acaf91e580e3a29d2e09b1af18076189ea550d01acf202ee0a1bf566ccc4f002dd98557cf3563f1099e7e60289d920ad8148671",
-        "dest-filename": "simple-get-4.0.0.tgz",
+        "url": "https://registry.yarnpkg.com/simple-get/-/simple-get-4.0.1.tgz#4a39db549287c979d352112fa03fd99fd6bc3543",
+        "sha512": "6ebbfba795a01f48e6409af56430df2833927965a0f8e572a46f7d03fe6f6063ea27aa7189a1cbcbc9f1b458c103ba0c6b4d5e6c0f607e1d6e30216a3ae5f1bc",
+        "dest-filename": "simple-get-4.0.1.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
@@ -10275,9 +10282,9 @@
     },
     {
         "type": "file",
-        "url": "https://registry.yarnpkg.com/throttle-debounce/-/throttle-debounce-2.3.0.tgz#fd31865e66502071e411817e241465b3e9c372e2",
-        "sha512": "1fba0b3d5d0fefe8e0beb93eea6c30c010e6c536b19eef473179a5a0d2d7c2734ed19c59df53ab6a1da7f2553578c3efb1aa303f6097f94482832a2f5df74e15",
-        "dest-filename": "throttle-debounce-2.3.0.tgz",
+        "url": "https://registry.yarnpkg.com/throttle-debounce/-/throttle-debounce-3.0.1.tgz#32f94d84dfa894f786c9a1f290e7a645b6a19abb",
+        "sha512": "75311658dbba2667955d8d196283ee1f971123073431e19b2706a1f4a50d612270a26990a42cd3c924e911ef06b35276dda79612e0286dee0083b10756dfcb3a",
+        "dest-filename": "throttle-debounce-3.0.1.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
