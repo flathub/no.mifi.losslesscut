@@ -90,6 +90,12 @@ modules:
         dest: flatpak-node/electron-cache
 
       - type: file
+        only-arches: ["aarch64"]
+        url: https://github.com/electron/electron/releases/download/v4.0.0/chromedriver-v4.0.0-linux-arm64.zip
+        sha256: 836f2484a35a1ed8e0467951920a0e33b597a4a073c278f5d6cf3abdb7f62df7
+        dest: flatpak-node/electron-cache
+
+      - type: file
         url: https://github.com/electron/electron/releases/download/v4.0.0/SHASUMS256.txt
         sha256: 52dfb903bf248db3b2c94cdcddd310034cd743098c13b5b10c71272ad6f812d1
         dest-filename: SHASUMS256.txt-4.0.0
