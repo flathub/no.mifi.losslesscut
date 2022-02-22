@@ -64,7 +64,7 @@ modules:
       - install -Dm a+rx /app/bin/ffprobe  ./ffmpeg/linux/ffprobe
       - yarn --offline run pack-linux dir
       - mkdir -p /app/lossless-cut
-      - cp -ar dist/linux-unpacked/* /app/lossless-cut/
+      - cp -ar dist/linux-*unpacked/* /app/lossless-cut/
 
       # Install the required static files
       - install run.sh /app/bin/run.sh
