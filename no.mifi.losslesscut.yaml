@@ -102,8 +102,8 @@ modules:
         dest: flatpak-node/electron-cache
 
       - type: archive
-        url: https://github.com/mifi/lossless-cut/archive/v3.43.0.tar.gz
-        sha256: d36b10f186957c988a50587ae48a61d25fb8e71e755d1a6640a3fd5f6df9b338
+        url: https://github.com/mifi/lossless-cut/archive/v3.44.0.tar.gz
+        sha256: 9574e02854948f3ceeec3bbaf13f44d1e4108903779f2222fd07a5b8328e412c
 
       - type: script
         dest-filename: run.sh
@@ -118,6 +118,5 @@ modules:
 
       - type: patch
         paths:
-            - add-appdata.patch
             - no-asar.patch
 

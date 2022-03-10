@@ -2344,13 +2344,6 @@
     },
     {
         "type": "file",
-        "url": "https://registry.yarnpkg.com/array-move/-/array-move-3.0.1.tgz#179645cc0987b65953a4fc06b6df9045e4ba9618",
-        "sha512": "1f739fe8d227da7354d60b150ea0e760a63f2c2756bc230c39689f34684a715420899ea739e937f5a1123afae8eb39ae78fd3b7b14a5f7760bbe43787d93a44a",
-        "dest-filename": "array-move-3.0.1.tgz",
-        "dest": "flatpak-node/yarn-mirror"
-    },
-    {
-        "type": "file",
         "url": "https://registry.yarnpkg.com/array-union/-/array-union-1.0.2.tgz#9a34410e4f4e3da23dea375be5be70f24778ec39",
         "sha1": "9a34410e4f4e3da23dea375be5be70f24778ec39",
         "dest-filename": "array-union-1.0.2.tgz",
@@ -4752,9 +4745,9 @@
     },
     {
         "type": "file",
-        "url": "https://registry.yarnpkg.com/fast-xml-parser/-/fast-xml-parser-3.21.1.tgz#152a1d51d445380f7046b304672dd55d15c9e736",
-        "sha512": "1531558d8a013994c97a4894b1ac06b12615f502f403ecc3602463ef2df820ee8983ed8831812d41af9b6e272da5da55f1d1f15f2c2a53b0b48110c4385b4116",
-        "dest-filename": "fast-xml-parser-3.21.1.tgz",
+        "url": "https://registry.yarnpkg.com/fast-xml-parser/-/fast-xml-parser-4.0.3.tgz#ad1ebfa53a447369634454073f7952f171ed4aba",
+        "sha512": "c6141b8376bf118347c0ad1cc481b59d99959075ffd2d5a285a9a7e6953832177d284544da06bc6498aa114801dac029125bc001339d3132e382a229bd80d491",
+        "dest-filename": "fast-xml-parser-4.0.3.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
@@ -5812,13 +5805,6 @@
         "url": "https://registry.yarnpkg.com/internal-slot/-/internal-slot-1.0.3.tgz#7347e307deeea2faac2ac6205d4bc7d34967f59c",
         "sha512": "3b40c1d490bfb0fc9997b708a3bf27e5d47b7944b0c2960f8974614f337165500c52e07cbe59d11722f176b553a24b3a5cf2d59c57dbcda55de562e386083ebc",
         "dest-filename": "internal-slot-1.0.3.tgz",
-        "dest": "flatpak-node/yarn-mirror"
-    },
-    {
-        "type": "file",
-        "url": "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6",
-        "sha512": "a6125f41506e689339ada3a926349f9220fa0696c213836cfff2da5e5eb0198b54058f379d64ba45ff6d5e6d9ef1568aeb42448d895d6cf89ffc0d81d42da034",
-        "dest-filename": "invariant-2.2.4.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
@@ -8864,13 +8850,6 @@
         "url": "https://registry.yarnpkg.com/react-scripts/-/react-scripts-5.0.0.tgz#6547a6d7f8b64364ef95273767466cc577cb4b60",
         "sha512": "de2d0bd82c889513b3ee6c444c475f89fe927e187d2dfa738b5d02b5c1acd5e983412b6665f5a325b00832d443d28a5552342e156a87672459f4f3f32821715a",
         "dest-filename": "react-scripts-5.0.0.tgz",
-        "dest": "flatpak-node/yarn-mirror"
-    },
-    {
-        "type": "file",
-        "url": "https://registry.yarnpkg.com/react-sortable-hoc/-/react-sortable-hoc-2.0.0.tgz#f6780d8aa4b922a21f3e754af542f032677078b7",
-        "sha512": "259530ee106c0075caecf4f212b27223b4a8a5204545c1470e3596e525a372e818d22ea21fb7fe789918f1c26618c959d42f71cf5277563cf4a651696af55e46",
-        "dest-filename": "react-sortable-hoc-2.0.0.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
