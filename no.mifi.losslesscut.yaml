@@ -53,7 +53,10 @@ modules:
             - type: archive
               url: https://github.com/libvips/libvips/releases/download/v8.12.1/vips-8.12.1.tar.gz
               sha256: 474d8439244cd26c504812fd623259f806c32553b38d2a54798c9766135f5a5c
- 
+              x-checker-data:
+                url: https://api.github.com/repos/libvips/libvips/releases/latest
+                version-query: .tag_name | sub("^v"; "")
+                url-query: '"https://github.com/libvips/libvips/archive/vips-" + $version + ".tar.gz"' 
           
     build-commands:
       - node --version
