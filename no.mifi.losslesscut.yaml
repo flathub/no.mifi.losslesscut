@@ -112,7 +112,7 @@ modules:
 
       - type: archive
         url: https://github.com/mifi/lossless-cut/archive/v3.46.2.tar.gz
-        sha256: 2c71819f5506be8e84f9466fe2f00deb82a1f91e9d3b938636d7ea92a089226c
+        sha256: 76691e1580e77674e1b9f48bc4cefad36d4c8d418f97202c1bed66f888933842
 
       - type: script
         dest-filename: run.sh
