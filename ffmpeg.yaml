@@ -30,6 +30,7 @@ config-opts:
   - --enable-libfontconfig
   - --enable-libfreetype
 
+  - --enable-indev=lavfi
   - --enable-avcodec
   - --enable-avfilter
   - --enable-swresample
