@@ -30,9 +30,10 @@ config-opts:
   - --enable-libfontconfig
   - --enable-libfreetype
 
-  # copied from another manifest
   - --enable-avcodec
   - --enable-avfilter
+  - --enable-swresample
+  - --enable-swscale
   - --enable-filters
   - --enable-avdevice
   #- --enable-libxml2
