@@ -16,6 +16,7 @@ finish-args:
   - --filesystem=xdg-public-share
   - --filesystem=xdg-videos
   - --talk-name=org.freedesktop.Notifications
+  - --share=network
 
 modules:
   - name: yarn
