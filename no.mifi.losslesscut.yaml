@@ -49,6 +49,7 @@ modules:
     modules:
       - ffmpeg.yaml
       - name: libvips
+        buildsystem: meson
         sources:
           - type: archive
             url: https://github.com/libvips/libvips/releases/download/v8.14.1/vips-8.14.1.tar.xz
