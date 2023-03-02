@@ -78,8 +78,4 @@ modules:
         commands:
           - /app/lossless-cut/losslesscut --no-sandbox
 
-      #- type: file
-      #  dest: static
-      #  path: no.mifi.losslesscut.appdata.xml
-
       - generated-sources.json
