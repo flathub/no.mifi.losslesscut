@@ -48,6 +48,7 @@ modules:
       - $FLATPAK_BUILDER_BUILDDIR/flatpak-node/yarn2-setup.sh
       - yarn install
       - if [ $(arch) = "x86_64" ]; then  install -Dm a+rx /app/bin/ffmpeg ffmpeg/linux-x64/ffmpeg;  install -Dm a+rx /app/bin/ffprobe ffmpeg/linux-x64/ffprobe;  elif [ $(arch) = "aarch64" ]; then  install -Dm a+rx /app/bin/ffmpeg ffmpeg/linux-arm64/ffmpeg;  install -Dm a+rx /app/bin/ffprobe ffmpeg/linux-arm64/ffprobe;   else echo "unknown"; exit 1; fi
+      - yarn build
       - yarn run pack-linux dir
       - mkdir -p /app/lossless-cut
       - cp -ar dist/linux-*unpacked/* /app/lossless-cut/
