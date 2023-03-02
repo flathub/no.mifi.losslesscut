@@ -4143,9 +4143,9 @@
     },
     {
         "type": "file",
-        "url": "https://registry.yarnpkg.com/electron-builder-notarize/-/electron-builder-notarize-1.1.2.tgz#29939591c6edf133aadc8450d975e9ce94a15da3",
-        "sha512": "222b86f96c24cb81307a4849f53e6df66d34b052fd10652b932af8c2a8af5f1aefb56206021d96094c0ee9ee3b9775bc9c4ff89e0d2ff95349859108942bb5c6",
-        "dest-filename": "electron-builder-notarize-1.1.2.tgz",
+        "url": "https://registry.yarnpkg.com/electron-builder-notarize/-/electron-builder-notarize-1.4.0.tgz#9e3609935eb70bf08f64fba255c3e4c43b0058e7",
+        "sha512": "e423d5973906f92a1f2b7554dc4e872a67575ba52eeaae565afcd75fa7622c0940cbda89b11d27f7d68dced54a2ac3e5eb28c46ef4fe314978722d180b038144",
+        "dest-filename": "electron-builder-notarize-1.4.0.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
@@ -4171,9 +4171,9 @@
     },
     {
         "type": "file",
-        "url": "https://registry.yarnpkg.com/electron-notarize/-/electron-notarize-0.2.1.tgz#759e8006decae19134f82996ed910db26d9192cc",
-        "sha512": "a19ebf36129e5e610a3513a216644d7f2b6abb7731a82f79b23a281bb9015d05445124246676e2021c558798d79e02fcf351b5f7ba5bc297953c9c8cec8926c7",
-        "dest-filename": "electron-notarize-0.2.1.tgz",
+        "url": "https://registry.yarnpkg.com/electron-notarize/-/electron-notarize-1.1.1.tgz#3ed274b36158c1beb1dbef14e7faf5927e028629",
+        "sha512": "92e7ec9ea87ce824d7f3d018346dcd08fa1ba2a9e4bbffb7d91c5e276fbb03845b9b86db3b1d0d73b5d3cb7fe002505fa63f713c0c477e164b38781f8ba70957",
+        "dest-filename": "electron-notarize-1.1.1.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
@@ -7202,9 +7202,9 @@
     },
     {
         "type": "file",
-        "url": "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602",
-        "sha512": "14cf6735462b4410042d9413df179943b7e630e060ea758d989293720b0979a2ecb4ffd43835691acaf93a15e185783a7feaad27cba267e3d4c640d67202172f",
-        "dest-filename": "minimist-1.2.5.tgz",
+        "url": "https://registry.yarnpkg.com/minimist/-/minimist-1.2.6.tgz#8637a5b759ea0d6e98702cfb3a9283323c93af44",
+        "sha512": "26c8e79386f0dd826a6336ddc8188db0f5873df3bef94186ef8f42c6cea9782bb95e0e27ade9dae8e571398c6b413ab0c34266c2df9179ff2b820ba69132f3f5",
+        "dest-filename": "minimist-1.2.6.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
@@ -7230,9 +7230,9 @@
     },
     {
         "type": "file",
-        "url": "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3",
-        "sha512": "9079a8c9b70f57c4aacb9f43c0d0d8dc979fafae252bf6f2fdd6b456215cb80e031f4bd083943a65ee558a6c647d03520be325b3f2b1e77b3b4e33f54611440d",
-        "dest-filename": "moment-2.29.1.tgz",
+        "url": "https://registry.yarnpkg.com/moment/-/moment-2.29.2.tgz#00910c60b20843bcba52d37d58c628b47b1f20e4",
+        "sha512": "520cc6e2bbf1629375e6380299527069ce3d87d972f4dbab8a431618f755c66f06643e978e428fc434e3410e3782d1a09d5dd7d1c03258374fd967b1a2aba27e",
+        "dest-filename": "moment-2.29.2.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
@@ -7377,9 +7377,9 @@
     },
     {
         "type": "file",
-        "url": "https://registry.yarnpkg.com/node-forge/-/node-forge-1.2.1.tgz#82794919071ef2eb5c509293325cec8afd0fd53c",
-        "sha512": "15cbed6dbfb305c6576d34d5c2a180e56f8c2818f9e948d545ebef721bf95eb7325db98d75eb1f64bdfb9e571639fa601e1826c40a70ded41b4ebe02a8d997e3",
-        "dest-filename": "node-forge-1.2.1.tgz",
+        "url": "https://registry.yarnpkg.com/node-forge/-/node-forge-1.3.0.tgz#37a874ea723855f37db091e6c186e5b67a01d4b2",
+        "sha512": "d3c01107dd5b522eb334acd599a8f740eedcaf7f7bba20d3da727addc1e3c8db424d6220bd2e3b8f7793d167f35304bdfba67962c8516a86ac1645c22ab2186c",
+        "dest-filename": "node-forge-1.3.0.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
@@ -8000,9 +8000,9 @@
     },
     {
         "type": "file",
-        "url": "https://registry.yarnpkg.com/plist/-/plist-3.0.4.tgz#a62df837e3aed2bb3b735899d510c4f186019cbe",
-        "sha512": "92caebf32f7e9d73b1401da8b1536aae0bd7fd740f397694e0140c2a362af0fbda635535f26a3e7ca8014b0ccafa5b92ca29ceb8f69ef79ea5495701c3194032",
-        "dest-filename": "plist-3.0.4.tgz",
+        "url": "https://registry.yarnpkg.com/plist/-/plist-3.0.5.tgz#2cbeb52d10e3cdccccf0c11a63a85d830970a987",
+        "sha512": "f37bd7e1e61d429def3fd4b1b9880433f1bfa4942a2d4cff57fc733ebcebb8bb3b7f3ee3c464359ac67f9a0d67c19c544ae3a9e2c6fefdb1086d1adbcd94710c",
+        "dest-filename": "plist-3.0.5.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {

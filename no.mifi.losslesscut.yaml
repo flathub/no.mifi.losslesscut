@@ -16,12 +16,12 @@ finish-args:
   - --filesystem=xdg-public-share
   - --filesystem=xdg-videos
   - --talk-name=org.freedesktop.Notifications
-        
+
 modules:
   - name: yarn
     buildsystem: simple
     build-commands:
-      - 'cp -a * /app'
+      - cp -a * /app
     # Only used for building, so clean it up afterwards.
     cleanup:
       - '*'
@@ -32,6 +32,7 @@ modules:
 
   - name: lossless-cut
     buildsystem: simple
+    run-tests: true
     build-options:
       append-path: /usr/lib/sdk/node16/bin
       env:
@@ -46,19 +47,25 @@ modules:
         ELECTRON_CACHE: /run/build/lossless-cut/flatpak-node/electron-cache
 
     modules:
-        - ffmpeg.yaml
-        - name: libvips
-          sources:
-            - type: archive
-              url: https://github.com/libvips/libvips/releases/download/v8.12.1/vips-8.12.1.tar.gz
-              sha256: 474d8439244cd26c504812fd623259f806c32553b38d2a54798c9766135f5a5c
- 
-          
+      - ffmpeg.yaml
+      - name: libvips
+        buildsystem: meson
+        sources:
+          - type: archive
+            url: https://github.com/libvips/libvips/releases/download/v8.14.1/vips-8.14.1.tar.xz
+            sha256: 5abde2a61f99ced7be4c32ccb13a654256eb7a0f6f0520ab61cc11412a1233fa
+            x-checker-data:
+              type: json
+              url: https://api.github.com/repos/libvips/libvips/releases/latest
+              version-query: .tag_name | sub("^v"; "")
+              url-query: .assets[] | select(.name=="vips-" + $version + ".tar.xz")
+                | .browser_download_url
     build-commands:
       - node --version
       - yarn --version
-      - env TMPDIR=$FLATPAK_BUILDER_BUILDDIR/flatpak-node/tmp HOME=$PWD yarn config --offline set yarn-offline-mirror $FLATPAK_BUILDER_BUILDDIR/flatpak-node/yarn-mirror
-      - 'yarn --offline'
+      - env TMPDIR=$FLATPAK_BUILDER_BUILDDIR/flatpak-node/tmp HOME=$PWD yarn config
+        --offline set yarn-offline-mirror $FLATPAK_BUILDER_BUILDDIR/flatpak-node/yarn-mirror
+      - yarn --offline
 
       - install -Dm a+rx /app/bin/ffmpeg  ./ffmpeg/linux/ffmpeg
       - install -Dm a+rx /app/bin/ffprobe  ./ffmpeg/linux/ffprobe
@@ -73,24 +80,27 @@ modules:
       - install -Dm 0644 no.mifi.losslesscut.appdata.xml  /app/share/metainfo/no.mifi.losslesscut.appdata.xml
       - install -Dm 0644 src/icon.svg /app/share/icons/hicolor/scalable/apps/no.mifi.losslesscut.svg
 
-      #- install -Dm a+rx /usr/bin/ffmpeg  /app/lossless-cut/resources/ffmpeg
-      #- install -Dm a+rx /usr/bin/ffprobe  /app/lossless-cut/resources/ffprobe
+      - install -Dm a+rx /usr/bin/ffmpeg  /app/lossless-cut/resources/ffmpeg
+      - install -Dm a+rx /usr/bin/ffprobe  /app/lossless-cut/resources/ffprobe
 
+    test-commands:
       # This is what the app would call. Let's try it ourselves to see whether we're good.
-      #- /app/lossless-cut/resources/ffmpeg -hide_banner -f lavfi -i nullsrc=s=256x256:d=1 -f null
+      - /app/lossless-cut/resources/ffmpeg '-hide_banner' '-f' 'lavfi' '-i' 'nullsrc=s=256x256:d=1'
+        '-f' 'null' '-'
+
     sources:
       # The chromedriver package tries to download a bunch of files
       # outside of the normal npm dependencies.  Pre-download them and
       # use ELECTRON_CACHE to point to them.
       # Taken from https://github.com/electron/chromedriver/issues/28#issuecomment-42783936
       - type: file
-        only-arches: ["x86_64"]
+        only-arches: [x86_64]
         url: https://github.com/electron/electron/releases/download/v4.0.0/chromedriver-v4.0.0-linux-x64.zip
         sha256: 221db18ea2f3a8267f9a57ee61a9d5a6df09824c61bf8cefa360502cae503d7c
         dest: flatpak-node/electron-cache
 
       - type: file
-        only-arches: ["aarch64"]
+        only-arches: [aarch64]
         url: https://github.com/electron/electron/releases/download/v4.0.0/chromedriver-v4.0.0-linux-arm64.zip
         sha256: 836f2484a35a1ed8e0467951920a0e33b597a4a073c278f5d6cf3abdb7f62df7
         dest: flatpak-node/electron-cache
@@ -102,8 +112,8 @@ modules:
         dest: flatpak-node/electron-cache
 
       - type: archive
-        url: https://github.com/mifi/lossless-cut/archive/v3.44.0.tar.gz
-        sha256: 9574e02854948f3ceeec3bbaf13f44d1e4108903779f2222fd07a5b8328e412c
+        url: https://github.com/mifi/lossless-cut/archive/v3.45.0.tar.gz
+        sha256: 4c71819f5506be8e84f9466fe2f00deb82a1f91e9d3b938636d7ea92a089226c
 
       - type: script
         dest-filename: run.sh
@@ -118,5 +128,5 @@ modules:
 
       - type: patch
         paths:
-            - no-asar.patch
+          - no-asar.patch
 
