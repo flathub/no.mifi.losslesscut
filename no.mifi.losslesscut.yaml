@@ -26,13 +26,7 @@ modules:
       env:
         NPM_CONFIG_LOGLEVEL: info
         npm_config_nodedir: /usr/lib/sdk/node18
-
-        # Tell caches where we pre-downloaded things.
-        npm_config_cache: /run/build/lossless-cut/flatpak-node/npm-cache/
-        electron_config_cache: /run/build/lossless-cut/flatpak-node/electron-cache
-
-        # Tell the chromedriver npm package where we pre-downloaded things.
-        ELECTRON_CACHE: /run/build/lossless-cut/flatpak-node/electron-cache
+        XDG_CACHE_HOME: /run/build/lossless-cut/flatpak-node/cache
 
     modules:
       - ffmpeg.yaml
