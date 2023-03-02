@@ -3,7 +3,7 @@ runtime: org.freedesktop.Platform
 runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.node14
+  - org.freedesktop.Sdk.Extension.node18
 
 command: /app/bin/run.sh
 finish-args:
@@ -34,10 +34,10 @@ modules:
     buildsystem: simple
     run-tests: true
     build-options:
-      append-path: /usr/lib/sdk/node14/bin
+      append-path: /usr/lib/sdk/node18/bin
       env:
         NPM_CONFIG_LOGLEVEL: info
-        npm_config_nodedir: /usr/lib/sdk/node14
+        npm_config_nodedir: /usr/lib/sdk/node18
 
         # Tell caches where we pre-downloaded things.
         npm_config_cache: /run/build/lossless-cut/flatpak-node/npm-cache/
