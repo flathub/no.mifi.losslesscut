@@ -52,10 +52,7 @@ modules:
       - node --version
       - yarn --version
       - $FLATPAK_BUILDER_BUILDDIR/flatpak-node/yarn2-setup.sh
-      - env TMPDIR=$FLATPAK_BUILDER_BUILDDIR/flatpak-node/tmp HOME=$PWD yarn config
-        --offline set yarn-offline-mirror $FLATPAK_BUILDER_BUILDDIR/flatpak-node/yarn-mirror
-      - yarn --offline
-
+      - yarn install
       - install -Dm a+rx /app/bin/ffmpeg  ./ffmpeg/linux/ffmpeg
       - install -Dm a+rx /app/bin/ffprobe  ./ffmpeg/linux/ffprobe
       - yarn --offline run pack-linux dir
