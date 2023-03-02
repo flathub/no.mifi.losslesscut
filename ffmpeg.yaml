@@ -35,7 +35,6 @@ config-opts:
   - --enable-avfilter
   - --enable-filters
   - --enable-avdevice
-  - --enable-avresample
   #- --enable-libxml2
   - --enable-swscale
 
