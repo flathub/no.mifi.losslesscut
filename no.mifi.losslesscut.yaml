@@ -49,10 +49,11 @@ modules:
     modules:
       - ffmpeg.yaml
       - name: libvips
+        buildsystem: meson
         sources:
           - type: archive
-            url: https://github.com/libvips/libvips/releases/download/v8.13.3/vips-8.13.3.tar.gz
-            sha256: 4eff5cdc8dbe1a05a926290a99014e20ba386f5dcca38d9774bef61413435d4c
+            url: https://github.com/libvips/libvips/releases/download/v8.14.1/vips-8.14.1.tar.xz
+            sha256: 5abde2a61f99ced7be4c32ccb13a654256eb7a0f6f0520ab61cc11412a1233fa
             x-checker-data:
               type: json
               url: https://api.github.com/repos/libvips/libvips/releases/latest
@@ -84,7 +85,8 @@ modules:
 
     test-commands:
       # This is what the app would call. Let's try it ourselves to see whether we're good.
-      - "/app/lossless-cut/resources/ffmpeg '-hide_banner' '-f' 'lavfi' '-i' 'nullsrc=s=256x256:d=1' '-f' 'null' '-'"
+      - /app/lossless-cut/resources/ffmpeg '-hide_banner' '-f' 'lavfi' '-i' 'nullsrc=s=256x256:d=1'
+        '-f' 'null' '-'
 
     sources:
       # The chromedriver package tries to download a bunch of files
