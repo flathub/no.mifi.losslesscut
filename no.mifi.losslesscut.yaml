@@ -83,8 +83,3 @@ modules:
       #  path: no.mifi.losslesscut.appdata.xml
 
       - generated-sources.json
-
-      - type: patch
-        paths:
-          - no-asar.patch
-
