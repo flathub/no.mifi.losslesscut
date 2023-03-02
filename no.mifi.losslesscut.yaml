@@ -81,8 +81,9 @@ modules:
       - install -Dm 0644 no.mifi.losslesscut.appdata.xml  /app/share/metainfo/no.mifi.losslesscut.appdata.xml
       - install -Dm 0644 src/icon.svg /app/share/icons/hicolor/scalable/apps/no.mifi.losslesscut.svg
 
-      - install -Dm a+rx /usr/bin/ffmpeg  /app/lossless-cut/resources/ffmpeg
-      - install -Dm a+rx /usr/bin/ffprobe  /app/lossless-cut/resources/ffprobe
+      # This is after the fact, and should probably be replaced by having put the files in the right place before electron-builder kicks in
+      - install -Dm a+rx /app/bin/ffmpeg  /app/lossless-cut/resources/ffmpeg
+      - install -Dm a+rx /app/bin/ffprobe  /app/lossless-cut/resources/ffprobe
 
     test-commands:
       - arch
