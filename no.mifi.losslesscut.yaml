@@ -3,7 +3,7 @@ runtime: org.freedesktop.Platform
 runtime-version: '21.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.node16
+  - org.freedesktop.Sdk.Extension.node18
 
 command: /app/bin/run.sh
 finish-args:
@@ -18,25 +18,13 @@ finish-args:
   - --talk-name=org.freedesktop.Notifications
         
 modules:
-  - name: yarn
-    buildsystem: simple
-    build-commands:
-      - 'cp -a * /app'
-    # Only used for building, so clean it up afterwards.
-    cleanup:
-      - '*'
-    sources:
-      - type: archive
-        url: https://github.com/yarnpkg/yarn/releases/download/v1.19.1/yarn-v1.19.1.tar.gz
-        sha256: 34293da6266f2aae9690d59c2d764056053ff7eebc56b80b8df05010c3da9343
-
   - name: lossless-cut
     buildsystem: simple
     build-options:
-      append-path: /usr/lib/sdk/node16/bin
+      append-path: /usr/lib/sdk/node18/bin
       env:
         NPM_CONFIG_LOGLEVEL: info
-        npm_config_nodedir: /usr/lib/sdk/node16
+        npm_config_nodedir: /usr/lib/sdk/node18
 
         # Tell caches where we pre-downloaded things.
         npm_config_cache: /run/build/lossless-cut/flatpak-node/npm-cache/
