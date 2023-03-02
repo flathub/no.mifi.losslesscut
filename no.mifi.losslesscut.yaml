@@ -1,6 +1,6 @@
 app-id: no.mifi.losslesscut
 runtime: org.freedesktop.Platform
-runtime-version: '21.08'
+runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.node18
@@ -53,9 +53,8 @@ modules:
       - yarn --version
       - $FLATPAK_BUILDER_BUILDDIR/flatpak-node/yarn2-setup.sh
       - yarn install
-      - install -Dm a+rx /app/bin/ffmpeg  ./ffmpeg/linux/ffmpeg
-      - install -Dm a+rx /app/bin/ffprobe  ./ffmpeg/linux/ffprobe
-      - yarn --offline run pack-linux dir
+      - if [ $(arch) = "x86_64" ]; then  install -Dm a+rx /app/bin/ffmpeg ffmpeg/linux-x64/ffmpeg;  install -Dm a+rx /app/bin/ffprobe ffmpeg/linux-x64/ffprobe;  elif [ $(arch) = "aarch64" ]; then  install -Dm a+rx /app/bin/ffmpeg ffmpeg/linux-arm64/ffmpeg;  install -Dm a+rx /app/bin/ffprobe ffmpeg/linux-arm64/ffprobe;   else echo "unknown"; exit 1; fi
+      - yarn run pack-linux dir
       - mkdir -p /app/lossless-cut
       - cp -ar dist/linux-*unpacked/* /app/lossless-cut/
 
@@ -66,10 +65,8 @@ modules:
       - install -Dm 0644 no.mifi.losslesscut.appdata.xml  /app/share/metainfo/no.mifi.losslesscut.appdata.xml
       - install -Dm 0644 src/icon.svg /app/share/icons/hicolor/scalable/apps/no.mifi.losslesscut.svg
 
-      - install -Dm a+rx /usr/bin/ffmpeg  /app/lossless-cut/resources/ffmpeg
-      - install -Dm a+rx /usr/bin/ffprobe  /app/lossless-cut/resources/ffprobe
-
     test-commands:
+      - /app/lossless-cut/resources/ffmpeg -version
       # This is what the app would call. Let's try it ourselves to see whether we're good.
       - /app/lossless-cut/resources/ffmpeg '-hide_banner' '-f' 'lavfi' '-i' 'nullsrc=s=256x256:d=1'
         '-f' 'null' '-'
