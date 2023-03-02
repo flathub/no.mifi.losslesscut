@@ -3,7 +3,7 @@ runtime: org.freedesktop.Platform
 runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.node14
+  - org.freedesktop.Sdk.Extension.node18
 
 command: /app/bin/run.sh
 finish-args:
@@ -18,33 +18,15 @@ finish-args:
   - --talk-name=org.freedesktop.Notifications
 
 modules:
-  - name: yarn
-    buildsystem: simple
-    build-commands:
-      - cp -a * /app
-    # Only used for building, so clean it up afterwards.
-    cleanup:
-      - '*'
-    sources:
-      - type: archive
-        url: https://github.com/yarnpkg/yarn/releases/download/v1.19.1/yarn-v1.19.1.tar.gz
-        sha256: 34293da6266f2aae9690d59c2d764056053ff7eebc56b80b8df05010c3da9343
-
   - name: lossless-cut
     buildsystem: simple
     run-tests: true
     build-options:
-      append-path: /usr/lib/sdk/node14/bin
+      append-path: /usr/lib/sdk/node18/bin
       env:
         NPM_CONFIG_LOGLEVEL: info
-        npm_config_nodedir: /usr/lib/sdk/node14
-
-        # Tell caches where we pre-downloaded things.
-        npm_config_cache: /run/build/lossless-cut/flatpak-node/npm-cache/
-        electron_config_cache: /run/build/lossless-cut/flatpak-node/electron-cache
-
-        # Tell the chromedriver npm package where we pre-downloaded things.
-        ELECTRON_CACHE: /run/build/lossless-cut/flatpak-node/electron-cache
+        npm_config_nodedir: /usr/lib/sdk/node18
+        XDG_CACHE_HOME: /run/build/lossless-cut/flatpak-node/cache
 
     modules:
       - ffmpeg.yaml
@@ -63,12 +45,13 @@ modules:
     build-commands:
       - node --version
       - yarn --version
-      - env TMPDIR=$FLATPAK_BUILDER_BUILDDIR/flatpak-node/tmp HOME=$PWD yarn config
-        --offline set yarn-offline-mirror $FLATPAK_BUILDER_BUILDDIR/flatpak-node/yarn-mirror
-      - yarn --offline
-
+      - $FLATPAK_BUILDER_BUILDDIR/flatpak-node/yarn2-setup.sh
+      - yarn install
       - if [ $(arch) = "x86_64" ]; then  install -Dm a+rx /app/bin/ffmpeg ffmpeg/linux-x64/ffmpeg;  install -Dm a+rx /app/bin/ffprobe ffmpeg/linux-x64/ffprobe;  elif [ $(arch) = "aarch64" ]; then  install -Dm a+rx /app/bin/ffmpeg ffmpeg/linux-arm64/ffmpeg;  install -Dm a+rx /app/bin/ffprobe ffmpeg/linux-arm64/ffprobe;   else echo "unknown"; exit 1; fi
-      - yarn --offline run pack-linux dir
+      - yarn build
+      - |
+        . flatpak-node/electron-builder-arch-args.sh
+        yarn run pack-linux $ELECTRON_BUILDER_ARCH_ARGS --config.asar=false --dir
       - mkdir -p /app/lossless-cut
       - cp -ar dist/linux-*unpacked/* /app/lossless-cut/
 
@@ -86,44 +69,13 @@ modules:
         '-f' 'null' '-'
 
     sources:
-      # The chromedriver package tries to download a bunch of files
-      # outside of the normal npm dependencies.  Pre-download them and
-      # use ELECTRON_CACHE to point to them.
-      # Taken from https://github.com/electron/chromedriver/issues/28#issuecomment-42783936
-      - type: file
-        only-arches: [x86_64]
-        url: https://github.com/electron/electron/releases/download/v4.0.0/chromedriver-v4.0.0-linux-x64.zip
-        sha256: 221db18ea2f3a8267f9a57ee61a9d5a6df09824c61bf8cefa360502cae503d7c
-        dest: flatpak-node/electron-cache
-
-      - type: file
-        only-arches: [aarch64]
-        url: https://github.com/electron/electron/releases/download/v4.0.0/chromedriver-v4.0.0-linux-arm64.zip
-        sha256: 836f2484a35a1ed8e0467951920a0e33b597a4a073c278f5d6cf3abdb7f62df7
-        dest: flatpak-node/electron-cache
-
-      - type: file
-        url: https://github.com/electron/electron/releases/download/v4.0.0/SHASUMS256.txt
-        sha256: 52dfb903bf248db3b2c94cdcddd310034cd743098c13b5b10c71272ad6f812d1
-        dest-filename: SHASUMS256.txt-4.0.0
-        dest: flatpak-node/electron-cache
-
       - type: archive
-        url: https://github.com/mifi/lossless-cut/archive/v3.45.0.tar.gz
-        sha256: 4c71819f5506be8e84f9466fe2f00deb82a1f91e9d3b938636d7ea92a089226c
+        url: https://github.com/mifi/lossless-cut/archive/v3.52.0.tar.gz
+        sha256: ce387ce675adb5f53f8588779909cbc8381847f70bde9b55659ad37a287baff6
 
       - type: script
         dest-filename: run.sh
         commands:
           - /app/lossless-cut/losslesscut --no-sandbox
 
-      #- type: file
-      #  dest: static
-      #  path: no.mifi.losslesscut.appdata.xml
-
-      - generated-sources.0.json
-
-      - type: patch
-        paths:
-          - no-asar.patch
-
+      - generated-sources.json
