@@ -67,6 +67,7 @@ modules:
         --offline set yarn-offline-mirror $FLATPAK_BUILDER_BUILDDIR/flatpak-node/yarn-mirror
       - yarn --offline
 
+      # it seems to expect the file in ffmpeg/linux-x64/ffmpeg (or -arm64), but how do I determine the architecture?
       - install -Dm a+rx /app/bin/ffmpeg  ./ffmpeg/linux/ffmpeg
       - install -Dm a+rx /app/bin/ffprobe  ./ffmpeg/linux/ffprobe
       - yarn --offline run pack-linux dir
@@ -84,6 +85,7 @@ modules:
       - install -Dm a+rx /usr/bin/ffprobe  /app/lossless-cut/resources/ffprobe
 
     test-commands:
+      - arch
       - /app/lossless-cut/resources/ffmpeg -version
       # This is what the app would call. Let's try it ourselves to see whether we're good.
       - /app/lossless-cut/resources/ffmpeg '-hide_banner' '-f' 'lavfi' '-i' 'nullsrc=s=256x256:d=1'
