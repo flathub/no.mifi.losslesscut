@@ -51,6 +51,7 @@ modules:
     build-commands:
       - node --version
       - yarn --version
+      - $FLATPAK_BUILDER_BUILDDIR/flatpak-node/yarn2-setup.sh
       - env TMPDIR=$FLATPAK_BUILDER_BUILDDIR/flatpak-node/tmp HOME=$PWD yarn config
         --offline set yarn-offline-mirror $FLATPAK_BUILDER_BUILDDIR/flatpak-node/yarn-mirror
       - yarn --offline
@@ -100,8 +101,8 @@ modules:
         dest: flatpak-node/electron-cache
 
       - type: archive
-        url: https://github.com/mifi/lossless-cut/archive/v3.45.0.tar.gz
-        sha256: 4c71819f5506be8e84f9466fe2f00deb82a1f91e9d3b938636d7ea92a089226c
+        url: https://github.com/mifi/lossless-cut/archive/v3.52.0.tar.gz
+        sha256: ce387ce675adb5f53f8588779909cbc8381847f70bde9b55659ad37a287baff6
 
       - type: script
         dest-filename: run.sh
@@ -112,7 +113,7 @@ modules:
       #  dest: static
       #  path: no.mifi.losslesscut.appdata.xml
 
-      - generated-sources.0.json
+      - generated-sources.json
 
       - type: patch
         paths:
