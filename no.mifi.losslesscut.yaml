@@ -34,8 +34,8 @@ modules:
         buildsystem: meson
         sources:
           - type: archive
-            url: https://github.com/libvips/libvips/releases/download/v8.14.1/vips-8.14.1.tar.xz
-            sha256: 5abde2a61f99ced7be4c32ccb13a654256eb7a0f6f0520ab61cc11412a1233fa
+            url: https://github.com/libvips/libvips/releases/download/v8.14.2/vips-8.14.2.tar.xz
+            sha256: 27dad021f0835a5ab14e541d02abd41e4c3bd012d2196438df5a9e754984f7ce
             x-checker-data:
               type: json
               url: https://api.github.com/repos/libvips/libvips/releases/latest
@@ -47,7 +47,11 @@ modules:
       - yarn --version
       - $FLATPAK_BUILDER_BUILDDIR/flatpak-node/yarn2-setup.sh
       - yarn install
-      - if [ $(arch) = "x86_64" ]; then  install -Dm a+rx /app/bin/ffmpeg ffmpeg/linux-x64/ffmpeg;  install -Dm a+rx /app/bin/ffprobe ffmpeg/linux-x64/ffprobe;  elif [ $(arch) = "aarch64" ]; then  install -Dm a+rx /app/bin/ffmpeg ffmpeg/linux-arm64/ffmpeg;  install -Dm a+rx /app/bin/ffprobe ffmpeg/linux-arm64/ffprobe;   else echo "unknown"; exit 1; fi
+      - if [ $(arch) = "x86_64" ]; then  install -Dm a+rx /app/bin/ffmpeg ffmpeg/linux-x64/ffmpeg;  install
+        -Dm a+rx /app/bin/ffprobe ffmpeg/linux-x64/ffprobe;  elif [ $(arch) = "aarch64"
+        ]; then  install -Dm a+rx /app/bin/ffmpeg ffmpeg/linux-arm64/ffmpeg;  install
+        -Dm a+rx /app/bin/ffprobe ffmpeg/linux-arm64/ffprobe;   else echo "unknown";
+        exit 1; fi
       - yarn build
       - |
         . flatpak-node/electron-builder-arch-args.sh
