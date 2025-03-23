@@ -5,7 +5,7 @@ sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.node18
 
-command: /app/bin/run.sh
+command: losslesscut
 finish-args:
   - --socket=x11
   - --share=ipc
@@ -60,8 +60,8 @@ modules:
       - cp -ar dist/linux-*unpacked/* /app/lossless-cut/
 
       # Install the required static files
-      - install run.sh /app/bin/run.sh
-      - desktop-file-edit --set-key Exec --set-value /app/bin/run.sh  no.mifi.losslesscut.desktop
+      - install losslesscut /app/bin/losslesscut
+      - desktop-file-edit --set-key Exec --set-value /app/bin/losslesscut no.mifi.losslesscut.desktop
       - install -Dm 0644 no.mifi.losslesscut.desktop  /app/share/applications/no.mifi.losslesscut.desktop
       - install -Dm 0644 no.mifi.losslesscut.appdata.xml  /app/share/metainfo/no.mifi.losslesscut.appdata.xml
       - install -Dm 0644 src/icon.svg /app/share/icons/hicolor/scalable/apps/no.mifi.losslesscut.svg
@@ -78,7 +78,7 @@ modules:
         sha256: f1c39a0fafb217b03b2dc6e5fe608a953e9478f634c7eb8c9406038928d1f936
 
       - type: script
-        dest-filename: run.sh
+        dest-filename: losslesscut
         commands:
           - /app/lossless-cut/losslesscut --no-sandbox
 
