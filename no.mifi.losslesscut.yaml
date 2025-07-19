@@ -74,14 +74,14 @@ modules:
       # For a basic snap, it might be directly in 'snap_mount'.
       # Let's assume the main application directory is called 'losslesscut' within the snap's root.
       - mkdir -p /app/lossless-cut
-      - cp -ar snap_mount/losslesscut/* /app/lossless-cut/ # ADJUST THIS PATH IF NEEDED!
+      - cp -ar snap_mount/* /app/lossless-cut/ # ADJUST THIS PATH IF NEEDED!
       # Clean up the mounted snap directory
       - rm -rf snap_mount
 
       # Install run.sh: The entry point within the snap might be different
       # We assume the main executable within the extracted snap is `losslesscut`.
-      - install -Dm 0755 /app/lossless-cut/losslesscut /app/lossless-cut/losslesscut # Ensure it's executable
-      - install -Dm 0755 /app/bin/run.sh # The custom run.sh
+      # - install -Dm 0755 /app/lossless-cut/losslesscut /app/lossless-cut/losslesscut # Ensure it's executable
+      - install -Dm 0755 ./run.sh /app/bin/run.sh # The custom run.sh
 
       # Desktop file and icons
       - desktop-file-edit --set-key Exec --set-value /app/bin/run.sh  no.mifi.losslesscut.desktop
