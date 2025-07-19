@@ -1,6 +1,6 @@
 app-id: no.mifi.losslesscut
 runtime: org.freedesktop.Platform
-runtime-version: '22.08'
+runtime-version: '24.08'
 sdk: org.freedesktop.Sdk
 
 # We are no longer building from source with Node.js/Yarn/Electron Builder,
