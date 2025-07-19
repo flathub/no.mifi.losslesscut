@@ -19,8 +19,6 @@ finish-args:
   - --filesystem=xdg-public-share
   - --filesystem=xdg-videos
   - --talk-name=org.freedesktop.Notifications
-  # It's possible the snap might rely on some gsettings, though less common for Electron
-  - --system-talk-name=org.freedesktop.FileManager1
 
 modules:
   - name: unsquashfs
