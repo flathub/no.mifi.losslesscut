@@ -84,13 +84,14 @@ modules:
       - install -Dm 0755 ./run.sh /app/bin/run.sh # The custom run.sh
 
       # Desktop file and icons
-      - desktop-file-edit --set-key Exec --set-value /app/bin/run.sh  no.mifi.losslesscut.desktop
-      - install -Dm 0644 no.mifi.losslesscut.desktop  /app/share/applications/no.mifi.losslesscut.desktop
-      - install -Dm 0644 no.mifi.losslesscut.appdata.xml  /app/share/metainfo/no.mifi.losslesscut.appdata.xml
+      - desktop-file-edit --set-key Exec --set-value /app/bin/run.sh src/no.mifi.losslesscut.desktop
+
+      - install -Dm 0644 src/no.mifi.losslesscut.desktop  /app/share/applications/no.mifi.losslesscut.desktop
+      - install -Dm 0644 src/no.mifi.losslesscut.appdata.xml  /app/share/metainfo/no.mifi.losslesscut.appdata.xml
       # Assume the icon is bundled in the snap, or use the provided one.
       # If the snap provides its own icon, you might want to copy that instead:
       # - install -Dm 0644 /app/lossless-cut/some/path/to/icon.png /app/share/icons/hicolor/scalable/apps/no.mifi.losslesscut.png
-      - install -Dm 0644 src/icon.svg /app/share/icons/hicolor/scalable/apps/no.mifi.losslesscut.svg
+      - install -Dm 0644 src/src/renderer/src/icon.svg /app/share/icons/hicolor/scalable/apps/no.mifi.losslesscut.svg
 
 
     # Test commands are less relevant as we are just packaging pre-built content.
@@ -106,6 +107,12 @@ modules:
         dest-filename: losslesscut.snap
         url: https://api.snapcraft.io/api/v1/snaps/download/uRYH61YLB0C3jpYE5sUqf3Tr3KSfuILe_135.snap
         sha256: f783ba65bfb74a4d283fdfec3ae6c797c883d1f3cc3000dc7a8a085f03c2ff07
+
+      - type: git
+        url: https://github.com/mifi/lossless-cut/
+        commit: 4bf1231dfc98f9d6c0aa08147a1ffdcd17f0d76f
+        dest: 'src/'
+      
 
       - type: script
         dest-filename: run.sh
