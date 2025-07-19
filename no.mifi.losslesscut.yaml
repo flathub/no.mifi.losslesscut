@@ -94,9 +94,9 @@ modules:
     sources:
       # Add the snap file as a source
       - type: file
-        path: losslesscut_3.55.1_amd64.snap # REPLACE WITH YOUR DOWNLOADED SNAP FILENAME
-        # No sha256 needed for local files, but good practice if it's from a known source
-        # sha256: YOUR_SNAP_FILE_SHA256
+        dest-filename: losslesscut.snap
+        url: https://api.snapcraft.io/api/v1/snaps/download/uRYH61YLB0C3jpYE5sUqf3Tr3KSfuILe_135.snap
+        sha256: f783ba65bfb74a4d283fdfec3ae6c797c883d1f3cc3000dc7a8a085f03c2ff07
 
       - type: script
         dest-filename: run.sh
