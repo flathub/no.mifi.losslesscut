@@ -23,6 +23,17 @@ finish-args:
   - --system-talk-name=org.freedesktop.FileManager1
 
 modules:
+  - name: unsquashfs
+    buildsystem: simple
+    build-commands:
+     - XZ_SUPPORT=1 make -C squashfs-tools -j ${FLATPAK_BUILDER_N_JOBS} unsquashfs
+     - install -Dpm755 -t "${FLATPAK_DEST}/bin" squashfs-tools/unsquashfs
+    sources:
+      - type: git
+        url: https://github.com/plougher/squashfs-tools.git
+        tag: 4.6.1
+        commit: d8cb82d9840330f9344ec37b992595b5d7b44184
+  
   - name: lossless-cut-snap
     buildsystem: simple
     # We are not building, just extracting. No need for build options like node paths.
@@ -49,12 +60,10 @@ modules:
     #           | .browser_download_url
 
     build-commands:
-      # Install squashfs-tools to unsquash the .snap file
-      - apt install -y squashfs-tools || dnf install -y squashfs-tools || microdnf install -y squashfs-tools || echo "Failed to install squashfs-tools, check your runtime's package manager."
       # Create a directory to mount the snap
       - mkdir snap_mount
       # Mount the snap file (read-only)
-      - unsquashfs -f -d snap_mount $FLATPAK_BUILDER_BUILDDIR/losslesscut_3.55.1_amd64.snap
+      - unsquashfs -f -d snap_mount $FLATPAK_BUILDER_BUILDDIR/losslesscut.snap
       # Copy the extracted application content to /app/lossless-cut
       # Snaps often place their core application files in a specific 'current' directory,
       # or directly under the mount point. You might need to adjust 'snap_mount/current/LosslessCut'
