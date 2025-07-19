@@ -2,84 +2,110 @@ app-id: no.mifi.losslesscut
 runtime: org.freedesktop.Platform
 runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
-sdk-extensions:
-  - org.freedesktop.Sdk.Extension.node18
+
+# We are no longer building from source with Node.js/Yarn/Electron Builder,
+# so we remove the node18 SDK extension.
+# sdk-extensions:
+#   - org.freedesktop.Sdk.Extension.node18
 
 command: /app/bin/run.sh
 finish-args:
   - --socket=x11
   - --share=ipc
-  - --device=dri         # Without DRI the app doesn't come up :-/
-  - --socket=pulseaudio  # We want to play sound, I suppose
-  # Electron cannot do portals :(
+  - --device=dri
+  - --socket=pulseaudio
+  # Electron applications often need these filesystem access
   - --filesystem=xdg-download
   - --filesystem=xdg-public-share
   - --filesystem=xdg-videos
   - --talk-name=org.freedesktop.Notifications
+  # It's possible the snap might rely on some gsettings, though less common for Electron
+  - --system-talk-name=org.freedesktop.FileManager1
 
 modules:
-  - name: lossless-cut
+  - name: lossless-cut-snap
     buildsystem: simple
-    run-tests: true
-    build-options:
-      append-path: /usr/lib/sdk/node18/bin
-      env:
-        NPM_CONFIG_LOGLEVEL: info
-        npm_config_nodedir: /usr/lib/sdk/node18
-        XDG_CACHE_HOME: /run/build/lossless-cut/flatpak-node/cache
+    # We are not building, just extracting. No need for build options like node paths.
+    # build-options:
+    #   append-path: /usr/lib/sdk/node18/bin
+    #   env:
+    #     NPM_CONFIG_LOGLEVEL: info
+    #     npm_config_nodedir: /usr/lib/sdk/node18
+    #     XDG_CACHE_HOME: /run/build/lossless-cut/flatpak-node/cache
 
-    modules:
-      - ffmpeg.yaml
-      - name: libvips
-        buildsystem: meson
-        sources:
-          - type: archive
-            url: https://github.com/libvips/libvips/releases/download/v8.15.1/vips-8.15.1.tar.xz
-            sha256: 06811f5aed3e7bc03e63d05537ff4b501de5283108c8ee79396c60601a00830c
-            x-checker-data:
-              type: json
-              url: https://api.github.com/repos/libvips/libvips/releases/latest
-              version-query: .tag_name | sub("^v"; "")
-              url-query: .assets[] | select(.name=="vips-" + $version + ".tar.xz")
-                | .browser_download_url
+    # We don't need these sub-modules as they are already bundled in the snap
+    # - ffmpeg.yaml
+    # - name: libvips
+    #   buildsystem: meson
+    #   sources:
+    #     - type: archive
+    #       url: https://github.com/libvips/libvips/releases/download/v8.15.1/vips-8.15.1.tar.xz
+    #       sha256: 06811f5aed3e3bc03e63d05537ff4b501de5283108c8ee79396c60601a00830c
+    #       x-checker-data:
+    #         type: json
+    #         url: https://api.github.com/repos/libvips/libvips/releases/latest
+    #         version-query: .tag_name | sub("^v"; "")
+    #         url-query: .assets[] | select(.name=="vips-" + $version + ".tar.xz")
+    #           | .browser_download_url
+
     build-commands:
-      - node --version
-      - yarn --version
-      - $FLATPAK_BUILDER_BUILDDIR/flatpak-node/yarn2-setup.sh
-      - yarn install
-      - if [ $(arch) = "x86_64" ]; then  install -Dm a+rx /app/bin/ffmpeg ffmpeg/linux-x64/ffmpeg;  install
-        -Dm a+rx /app/bin/ffprobe ffmpeg/linux-x64/ffprobe;  elif [ $(arch) = "aarch64"
-        ]; then  install -Dm a+rx /app/bin/ffmpeg ffmpeg/linux-arm64/ffmpeg;  install
-        -Dm a+rx /app/bin/ffprobe ffmpeg/linux-arm64/ffprobe;   else echo "unknown";
-        exit 1; fi
-      - yarn build
-      - |
-        . flatpak-node/electron-builder-arch-args.sh
-        yarn run pack-linux $ELECTRON_BUILDER_ARCH_ARGS --config.asar=false --dir
+      # Install squashfs-tools to unsquash the .snap file
+      - apt install -y squashfs-tools || dnf install -y squashfs-tools || microdnf install -y squashfs-tools || echo "Failed to install squashfs-tools, check your runtime's package manager."
+      # Create a directory to mount the snap
+      - mkdir snap_mount
+      # Mount the snap file (read-only)
+      - unsquashfs -f -d snap_mount $FLATPAK_BUILDER_BUILDDIR/losslesscut_3.55.1_amd64.snap
+      # Copy the extracted application content to /app/lossless-cut
+      # Snaps often place their core application files in a specific 'current' directory,
+      # or directly under the mount point. You might need to adjust 'snap_mount/current/LosslessCut'
+      # based on the actual structure of the LosslessCut snap.
+      # A good guess for an Electron app in a snap is often something like:
+      # snap_mount/snap/losslesscut/current/LosslessCut
+      # Or just the top level 'snap_mount' depending on how the snap is structured.
+      # For a basic snap, it might be directly in 'snap_mount'.
+      # Let's assume the main application directory is called 'losslesscut' within the snap's root.
       - mkdir -p /app/lossless-cut
-      - cp -ar dist/linux-*unpacked/* /app/lossless-cut/
+      - cp -ar snap_mount/losslesscut/* /app/lossless-cut/ # ADJUST THIS PATH IF NEEDED!
+      # Clean up the mounted snap directory
+      - rm -rf snap_mount
 
-      # Install the required static files
-      - install run.sh /app/bin/run.sh
+      # Install run.sh: The entry point within the snap might be different
+      # We assume the main executable within the extracted snap is `losslesscut`.
+      - install -Dm 0755 /app/lossless-cut/losslesscut /app/lossless-cut/losslesscut # Ensure it's executable
+      - install -Dm 0755 /app/bin/run.sh # The custom run.sh
+
+      # Desktop file and icons
       - desktop-file-edit --set-key Exec --set-value /app/bin/run.sh  no.mifi.losslesscut.desktop
       - install -Dm 0644 no.mifi.losslesscut.desktop  /app/share/applications/no.mifi.losslesscut.desktop
       - install -Dm 0644 no.mifi.losslesscut.appdata.xml  /app/share/metainfo/no.mifi.losslesscut.appdata.xml
+      # Assume the icon is bundled in the snap, or use the provided one.
+      # If the snap provides its own icon, you might want to copy that instead:
+      # - install -Dm 0644 /app/lossless-cut/some/path/to/icon.png /app/share/icons/hicolor/scalable/apps/no.mifi.losslesscut.png
       - install -Dm 0644 src/icon.svg /app/share/icons/hicolor/scalable/apps/no.mifi.losslesscut.svg
 
-    test-commands:
-      - /app/lossless-cut/resources/ffmpeg -version
-      # This is what the app would call. Let's try it ourselves to see whether we're good.
-      - /app/lossless-cut/resources/ffmpeg '-hide_banner' '-f' 'lavfi' '-i' 'nullsrc=s=256x256:d=1'
-        '-f' 'null' '-'
+
+    # Test commands are less relevant as we are just packaging pre-built content.
+    # You could still try to run the app or check for basic files.
+    # test-commands:
+    #   - /app/lossless-cut/resources/ffmpeg -version
+    #   - /app/lossless-cut/resources/ffmpeg '-hide_banner' '-f' 'lavfi' '-i' 'nullsrc=s=256x256:d=1'
+    #     '-f' 'null' '-'
 
     sources:
-      - type: archive
-        url: https://github.com/mifi/lossless-cut/archive/v3.55.1.tar.gz
-        sha256: f1c39a0fafb217b03b2dc6e5fe608a953e9478f634c7eb8c9406038928d1f936
+      # Add the snap file as a source
+      - type: file
+        path: losslesscut_3.55.1_amd64.snap # REPLACE WITH YOUR DOWNLOADED SNAP FILENAME
+        # No sha256 needed for local files, but good practice if it's from a known source
+        # sha256: YOUR_SNAP_FILE_SHA256
 
       - type: script
         dest-filename: run.sh
         commands:
-          - /app/lossless-cut/losslesscut --no-sandbox
+          # This needs to point to the actual executable inside the extracted snap.
+          # For Electron apps, it's often 'electron_app_name' or similar,
+          # or a wrapper script. Let's assume the main executable is 'losslesscut'
+          # directly in the copied path.
+          - /app/lossless-cut/losslesscut --no-sandbox # Adjust if the path/name is different
 
-      - generated-sources.json
+      # This is likely no longer needed as we're not building with node/yarn
+      # - generated-sources.json
