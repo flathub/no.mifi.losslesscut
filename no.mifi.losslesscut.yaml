@@ -36,51 +36,16 @@ modules:
   
   - name: lossless-cut-snap
     buildsystem: simple
-    # We are not building, just extracting. No need for build options like node paths.
-    # build-options:
-    #   append-path: /usr/lib/sdk/node18/bin
-    #   env:
-    #     NPM_CONFIG_LOGLEVEL: info
-    #     npm_config_nodedir: /usr/lib/sdk/node18
-    #     XDG_CACHE_HOME: /run/build/lossless-cut/flatpak-node/cache
-
-    # We don't need these sub-modules as they are already bundled in the snap
-    # - ffmpeg.yaml
-    # - name: libvips
-    #   buildsystem: meson
-    #   sources:
-    #     - type: archive
-    #       url: https://github.com/libvips/libvips/releases/download/v8.15.1/vips-8.15.1.tar.xz
-    #       sha256: 06811f5aed3e3bc03e63d05537ff4b501de5283108c8ee79396c60601a00830c
-    #       x-checker-data:
-    #         type: json
-    #         url: https://api.github.com/repos/libvips/libvips/releases/latest
-    #         version-query: .tag_name | sub("^v"; "")
-    #         url-query: .assets[] | select(.name=="vips-" + $version + ".tar.xz")
-    #           | .browser_download_url
-
     build-commands:
       # Create a directory to mount the snap
       - mkdir snap_mount
       # Mount the snap file (read-only)
       - unsquashfs -f -d snap_mount $FLATPAK_BUILDER_BUILDDIR/losslesscut.snap
-      # Copy the extracted application content to /app/lossless-cut
-      # Snaps often place their core application files in a specific 'current' directory,
-      # or directly under the mount point. You might need to adjust 'snap_mount/current/LosslessCut'
-      # based on the actual structure of the LosslessCut snap.
-      # A good guess for an Electron app in a snap is often something like:
-      # snap_mount/snap/losslesscut/current/LosslessCut
-      # Or just the top level 'snap_mount' depending on how the snap is structured.
-      # For a basic snap, it might be directly in 'snap_mount'.
-      # Let's assume the main application directory is called 'losslesscut' within the snap's root.
       - mkdir -p /app/lossless-cut
       - cp -ar snap_mount/* /app/lossless-cut/ # ADJUST THIS PATH IF NEEDED!
       # Clean up the mounted snap directory
       - rm -rf snap_mount
 
-      # Install run.sh: The entry point within the snap might be different
-      # We assume the main executable within the extracted snap is `losslesscut`.
-      # - install -Dm 0755 /app/lossless-cut/losslesscut /app/lossless-cut/losslesscut # Ensure it's executable
       - install -Dm 0755 ./run.sh /app/bin/run.sh # The custom run.sh
 
       # Desktop file and icons
@@ -88,21 +53,10 @@ modules:
 
       - install -Dm 0644 src/no.mifi.losslesscut.desktop  /app/share/applications/no.mifi.losslesscut.desktop
       - install -Dm 0644 src/no.mifi.losslesscut.appdata.xml  /app/share/metainfo/no.mifi.losslesscut.appdata.xml
-      # Assume the icon is bundled in the snap, or use the provided one.
-      # If the snap provides its own icon, you might want to copy that instead:
-      # - install -Dm 0644 /app/lossless-cut/some/path/to/icon.png /app/share/icons/hicolor/scalable/apps/no.mifi.losslesscut.png
+      
       - install -Dm 0644 src/src/renderer/src/icon.svg /app/share/icons/hicolor/scalable/apps/no.mifi.losslesscut.svg
 
-
-    # Test commands are less relevant as we are just packaging pre-built content.
-    # You could still try to run the app or check for basic files.
-    # test-commands:
-    #   - /app/lossless-cut/resources/ffmpeg -version
-    #   - /app/lossless-cut/resources/ffmpeg '-hide_banner' '-f' 'lavfi' '-i' 'nullsrc=s=256x256:d=1'
-    #     '-f' 'null' '-'
-
     sources:
-      # Add the snap file as a source
       - type: file
         dest-filename: losslesscut.snap
         url: https://api.snapcraft.io/api/v1/snaps/download/uRYH61YLB0C3jpYE5sUqf3Tr3KSfuILe_135.snap
@@ -122,6 +76,3 @@ modules:
           # or a wrapper script. Let's assume the main executable is 'losslesscut'
           # directly in the copied path.
           - /app/lossless-cut/losslesscut --no-sandbox # Adjust if the path/name is different
-
-      # This is likely no longer needed as we're not building with node/yarn
-      # - generated-sources.json
