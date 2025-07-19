@@ -8,7 +8,7 @@ sdk: org.freedesktop.Sdk
 # sdk-extensions:
 #   - org.freedesktop.Sdk.Extension.node18
 
-command: /app/bin/run.sh
+command: run.sh
 finish-args:
   - --socket=x11
   - --share=ipc
@@ -47,7 +47,7 @@ modules:
       - install -Dm 0755 ./run.sh /app/bin/run.sh # The custom run.sh
 
       # Desktop file and icons
-      - desktop-file-edit --set-key Exec --set-value /app/bin/run.sh src/no.mifi.losslesscut.desktop
+      - desktop-file-edit --set-key Exec --set-value run.sh src/no.mifi.losslesscut.desktop
 
       - install -Dm 0644 src/no.mifi.losslesscut.desktop  /app/share/applications/no.mifi.losslesscut.desktop
       - install -Dm 0644 src/no.mifi.losslesscut.appdata.xml  /app/share/metainfo/no.mifi.losslesscut.appdata.xml
