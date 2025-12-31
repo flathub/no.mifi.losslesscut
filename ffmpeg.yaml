@@ -48,8 +48,8 @@ config-opts:
 
 sources:
   - type: archive
-    url: https://ffmpeg.org/releases/ffmpeg-6.1.1.tar.xz
-    sha256: 8684f4b00f94b85461884c3719382f1261f0d9eb3d59640a1f4ac0873616f968
+    url: https://ffmpeg.org/releases/ffmpeg-7.1.1.tar.xz
+    sha512: 42486e485c8fc6f3ec61598a1a7cb40360535762b3fcf28c10d7c6840bc55afe3334434912746e69eef862d3cedf45a02953bde73d38547d2d9a7a38a65e123a
     x-checker-data:
       type: anitya
       project-id: 5405
