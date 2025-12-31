@@ -8,7 +8,7 @@ sdk-extensions:
   - org.freedesktop.Sdk.Extension.node24
 separate-locales: false
   
-command: /app/bin/run.sh
+command: run.sh
 finish-args:
   - --socket=x11
   - --share=ipc
