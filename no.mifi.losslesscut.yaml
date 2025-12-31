@@ -10,7 +10,7 @@ separate-locales: false
   
 command: run.sh
 finish-args:
-  - --socket=x11
+  - --socket=fallback-x11
   - --share=ipc
   - --device=dri         # Without DRI the app doesn't come up :-/
   - --socket=pulseaudio  # We want to play sound, I suppose
