@@ -1,16 +1,20 @@
 app-id: no.mifi.losslesscut
 runtime: org.freedesktop.Platform
-runtime-version: '22.08'
+runtime-version: '25.08'
+base: org.electronjs.Electron2.BaseApp
+base-version: '25.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.node18
-
+  - org.freedesktop.Sdk.Extension.node24
+separate-locales: false
+  
 command: /app/bin/run.sh
 finish-args:
   - --socket=x11
   - --share=ipc
   - --device=dri         # Without DRI the app doesn't come up :-/
   - --socket=pulseaudio  # We want to play sound, I suppose
+  - --socket=wayland
   # Electron cannot do portals :(
   - --filesystem=xdg-download
   - --filesystem=xdg-public-share
@@ -22,11 +26,25 @@ modules:
     buildsystem: simple
     run-tests: true
     build-options:
-      append-path: /usr/lib/sdk/node18/bin
+      append-path: /usr/lib/sdk/node24/bin
+      append-pkg-config-path: /app/lib64/pkgconfig
+      append-ld-library-path: /app/lib64/
       env:
         NPM_CONFIG_LOGLEVEL: info
-        npm_config_nodedir: /usr/lib/sdk/node18
+        npm_config_nodedir: /usr/lib/sdk/node24
         XDG_CACHE_HOME: /run/build/lossless-cut/flatpak-node/cache
+        # more verbose
+        YARN_ENABLE_INLINE_BUILDS: '1'
+        # disable telemetry
+        YARN_ENABLE_TELEMETRY: '0'
+        # disable network access
+        YARN_ENABLE_NETWORK: '0'
+        # disable global cache
+        YARN_ENABLE_GLOBAL_CACHE: '0'
+        # set yarn global folder
+        YARN_GLOBAL_FOLDER: /run/build/lossless-cut/flatpak-node/yarn-berry
+        # npm libvips wants to download libvips
+        SHARP_FORCE_GLOBAL_LIBVIPS: '1'
 
     modules:
       - ffmpeg.yaml
@@ -34,19 +52,27 @@ modules:
         buildsystem: meson
         sources:
           - type: archive
-            url: https://github.com/libvips/libvips/releases/download/v8.15.1/vips-8.15.1.tar.xz
-            sha256: 06811f5aed3e7bc03e63d05537ff4b501de5283108c8ee79396c60601a00830c
+            url: https://github.com/libvips/libvips/releases/download/v8.17.3/vips-8.17.3.tar.xz
+            sha512: 31467a4d9b33c00f41aec05de2ca2dac328199eeb25dbfd2ee085fc45e8abf3903d50b32d65a8581647e4a83cfe2d351054ab00e556bad610afacbf24e19010f
             x-checker-data:
               type: json
               url: https://api.github.com/repos/libvips/libvips/releases/latest
               version-query: .tag_name | sub("^v"; "")
               url-query: .assets[] | select(.name=="vips-" + $version + ".tar.xz")
                 | .browser_download_url
+
     build-commands:
+      - echo $PKG_CONFIG_PATH
+      - pkg-config --modversion vips-cpp
+      - echo $LD_LIBRARY_PATH
       - node --version
       - yarn --version
-      - $FLATPAK_BUILDER_BUILDDIR/flatpak-node/yarn2-setup.sh
+      - yarn config
+      - yarn plugin import $FLATPAK_BUILDER_BUILDDIR/flatpak-node/flatpak-yarn.js
+      - yarn convertToZip $(which yarn)
+      
       - yarn install
+
       - if [ $(arch) = "x86_64" ]; then  install -Dm a+rx /app/bin/ffmpeg ffmpeg/linux-x64/ffmpeg;  install
         -Dm a+rx /app/bin/ffprobe ffmpeg/linux-x64/ffprobe;  elif [ $(arch) = "aarch64"
         ]; then  install -Dm a+rx /app/bin/ffmpeg ffmpeg/linux-arm64/ffmpeg;  install
@@ -58,24 +84,30 @@ modules:
         yarn run pack-linux $ELECTRON_BUILDER_ARCH_ARGS --config.asar=false --dir
       - mkdir -p /app/lossless-cut
       - cp -ar dist/linux-*unpacked/* /app/lossless-cut/
+      - install -Dm a+rx /app/bin/ffmpeg  /app/lossless-cut/resources/ffmpeg
 
       # Install the required static files
       - install run.sh /app/bin/run.sh
       - desktop-file-edit --set-key Exec --set-value /app/bin/run.sh  no.mifi.losslesscut.desktop
       - install -Dm 0644 no.mifi.losslesscut.desktop  /app/share/applications/no.mifi.losslesscut.desktop
       - install -Dm 0644 no.mifi.losslesscut.appdata.xml  /app/share/metainfo/no.mifi.losslesscut.appdata.xml
-      - install -Dm 0644 src/icon.svg /app/share/icons/hicolor/scalable/apps/no.mifi.losslesscut.svg
+      - install -Dm 0644 src/renderer/src/icon.svg /app/share/icons/hicolor/scalable/apps/no.mifi.losslesscut.svg
 
     test-commands:
       - /app/lossless-cut/resources/ffmpeg -version
       # This is what the app would call. Let's try it ourselves to see whether we're good.
-      - /app/lossless-cut/resources/ffmpeg '-hide_banner' '-f' 'lavfi' '-i' 'nullsrc=s=256x256:d=1'
-        '-f' 'null' '-'
+      - /app/lossless-cut/resources/ffmpeg '-hide_banner' '-f' 'lavfi' '-i' 'nullsrc=s=256x256:d=1' '-f' 'null' '-'
 
     sources:
       - type: archive
-        url: https://github.com/mifi/lossless-cut/archive/v3.55.1.tar.gz
-        sha256: f1c39a0fafb217b03b2dc6e5fe608a953e9478f634c7eb8c9406038928d1f936
+        url: https://github.com/mifi/lossless-cut/archive/v3.67.0.tar.gz
+        sha512: 9c8eba536a77204fe7973d39e053b7bcdfacf238caf0b8d38b842c5af15802131d9e3c55430ce5ec4defde7262ba526ced51abaa069181b5689bf22ae1a0844d
+        x-checker-data:
+            type: json
+            url: https://api.github.com/repos/mifi/lossless-cut/releases/latest
+            version-query: '.tag_name'
+            url-query: .assets[] | select(.name=="" + $version + ".tar.xz")
+                | .browser_download_url
 
       - type: script
         dest-filename: run.sh
