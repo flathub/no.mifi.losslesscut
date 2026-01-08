@@ -7,7 +7,7 @@ sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.node24
 separate-locales: false
-  
+
 command: run.sh
 finish-args:
   - --socket=fallback-x11
@@ -52,8 +52,8 @@ modules:
         buildsystem: meson
         sources:
           - type: archive
-            url: https://github.com/libvips/libvips/releases/download/v8.17.3/vips-8.17.3.tar.xz
-            sha512: 31467a4d9b33c00f41aec05de2ca2dac328199eeb25dbfd2ee085fc45e8abf3903d50b32d65a8581647e4a83cfe2d351054ab00e556bad610afacbf24e19010f
+            url: https://github.com/libvips/libvips/releases/download/v8.18.0/vips-8.18.0.tar.xz
+            sha512: 5f1a9202a018a000c7552d2107989041ba98a624bf931d1199e18bbe47e97b096448e7cdfc8d512c36406ba350e098029b382b0b7ce829c7ffef2228127a3354
             x-checker-data:
               type: json
               url: https://api.github.com/repos/libvips/libvips/releases/latest
@@ -70,7 +70,7 @@ modules:
       - yarn config
       - yarn plugin import $FLATPAK_BUILDER_BUILDDIR/flatpak-node/flatpak-yarn.js
       - yarn convertToZip $(which yarn)
-      
+
       - yarn install
       - yarn build
       - |
@@ -92,18 +92,18 @@ modules:
       - /app/lossless-cut/resources/ffprobe -version
       - /app/lossless-cut/resources/ffmpeg -version
       # This is what the app would call. Let's try it ourselves to see whether we're good.
-      - /app/lossless-cut/resources/ffmpeg '-hide_banner' '-f' 'lavfi' '-i' 'nullsrc=s=256x256:d=1' '-f' 'null' '-'
+      - /app/lossless-cut/resources/ffmpeg '-hide_banner' '-f' 'lavfi' '-i' 'nullsrc=s=256x256:d=1'
+        '-f' 'null' '-'
 
     sources:
       - type: archive
         url: https://github.com/mifi/lossless-cut/archive/v3.67.0.tar.gz
         sha512: 9c8eba536a77204fe7973d39e053b7bcdfacf238caf0b8d38b842c5af15802131d9e3c55430ce5ec4defde7262ba526ced51abaa069181b5689bf22ae1a0844d
         x-checker-data:
-            type: json
-            url: https://api.github.com/repos/mifi/lossless-cut/releases/latest
-            version-query: '.tag_name'
-            url-query: .assets[] | select(.name=="" + $version + ".tar.xz")
-                | .browser_download_url
+          type: json
+          url: https://api.github.com/repos/mifi/lossless-cut/releases/latest
+          version-query: .tag_name
+          url-query: .assets[] | select(.name=="" + $version + ".tar.xz") | .browser_download_url
 
       - type: script
         dest-filename: run.sh
