@@ -97,8 +97,8 @@ modules:
 
     sources:
       - type: archive
-        url: https://github.com/mifi/lossless-cut/archive/v3.67.0.tar.gz
-        sha512: 9c8eba536a77204fe7973d39e053b7bcdfacf238caf0b8d38b842c5af15802131d9e3c55430ce5ec4defde7262ba526ced51abaa069181b5689bf22ae1a0844d
+        url: https://github.com/mifi/lossless-cut/archive/v3.68.1.tar.gz
+        sha512: ae2be308096b1c4d8a8e118cd21780bd582e47b55817f6b2033e339fdeb42b4a08df702eed72cfc34743edf7dec6fc92247c57c1bddb6f5e2925e57e8db045fc
         x-checker-data:
           type: json
           url: https://api.github.com/repos/mifi/lossless-cut/releases/latest
