@@ -108,6 +108,6 @@ modules:
       - type: script
         dest-filename: run.sh
         commands:
-          - zypak-wrapper /app/lossless-cut/losslesscut
+          - zypak-wrapper /app/lossless-cut/losslesscut "$@"
 
       - generated-sources.json
