@@ -15,10 +15,9 @@ finish-args:
   - --device=dri         # Without DRI the app doesn't come up :-/
   - --socket=pulseaudio  # We want to play sound, I suppose
   - --socket=wayland
-  # Electron cannot do portals :(
-  - --filesystem=xdg-download
-  - --filesystem=xdg-public-share
-  - --filesystem=xdg-videos
+  # Needed to access media files dropped from directories outside the XDG user
+  # directories.
+  - --filesystem=home
   - --talk-name=org.freedesktop.Notifications
 
 modules:
