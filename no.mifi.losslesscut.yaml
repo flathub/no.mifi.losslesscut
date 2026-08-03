@@ -52,8 +52,8 @@ modules:
         buildsystem: meson
         sources:
           - type: archive
-            url: https://github.com/libvips/libvips/releases/download/v8.18.4/vips-8.18.4.tar.xz
-            sha512: 19eeafcb8bef187b056242c0852038a432672481476d16aabab97f2fd44e97852c96d28c730e32e60cf89d0afa3f4698a14c66f0bac5c04eceef082af6a69be8
+            url: https://github.com/libvips/libvips/releases/download/v8.18.5/vips-8.18.5.tar.xz
+            sha512: 0351887a74f530a8c1f46093e305cff245bd90473f3016e83de550d102f3631da3d2351d055f9ade8b440e636c4aa20b42ed0bc9eec952a440ef668d2ecdd45d
             x-checker-data:
               type: json
               url: https://api.github.com/repos/libvips/libvips/releases/latest
