@@ -15,10 +15,11 @@ finish-args:
   - --device=dri         # Without DRI the app doesn't come up :-/
   - --socket=pulseaudio  # We want to play sound, I suppose
   - --socket=wayland
-  # Electron cannot do portals :(
-  - --filesystem=xdg-download
-  - --filesystem=xdg-public-share
-  - --filesystem=xdg-videos
+  # Electron cannot do portals :( — and because the app writes its output
+  # next to the input file, anything opened from outside these paths silently
+  # fails to export: the portal stages the result as a hidden .xdp-* file that
+  # is never renamed, while the app reports success.
+  - --filesystem=home
   - --talk-name=org.freedesktop.Notifications
 
 modules:
