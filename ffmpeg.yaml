@@ -57,8 +57,8 @@ config-opts:
 
 sources:
   - type: archive
-    url: https://ffmpeg.org/releases/ffmpeg-8.1.2.tar.xz
-    sha512: b3adc16fe426217bb607da01c4137cee0a9788fc08e077874336db185d2b7287746a7dc94cf0181ea92cd8afcdb06094ee9456e2986112354f84538cb9a5ed0b
+    url: https://ffmpeg.org/releases/ffmpeg-9.0.2.tar.xz
+    sha512: 7756f8434371b9bc1d01cf578bf49014e058b0869c3c1df05030f5f4035f1def64b2e7dba3cf340da4dc8dd9239dd5f894530c9e45793ac27876807079aa546a
     x-checker-data:
       type: anitya
       project-id: 5405
